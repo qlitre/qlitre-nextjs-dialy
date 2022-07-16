@@ -17,14 +17,13 @@ type Props = {
   post: Post;
 };
 
-
 export default function Article({ post }: Props) {
   return (
     <Box>
       <Header />
-      <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
+      <Container as="main" maxW="container.md" marginTop="4" marginBottom="16">
         <Stack spacing="8">
-          <Heading as="h1" fontSize="2xl" lineHeight={1.6}>
+          <Heading as="h1" fontSize="4xl" lineHeight={1.6}>
             {post.title}
           </Heading>
         </Stack>
@@ -36,9 +35,12 @@ export default function Article({ post }: Props) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const data = await client.getList<Post>({ endpoint: "post" });
+  // limitがデフォルトで10なので、一旦totalCountを取得してから再度リクエストを投げる
+  const data = await client.getList<Post>({ endpoint: "post", queries: { fields: 'id' } });
+  const totalCount = data.totalCount
+  const allData = await client.getList<Post>({ endpoint: "post", queries: { limit: totalCount } });
 
-  const paths = data.contents.map((content) => `/post/${content.id}`);
+  const paths = allData.contents.map((content) => `/post/${content.id}`);
   return { paths, fallback: false };
 };
 

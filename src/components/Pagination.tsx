@@ -3,7 +3,6 @@ import {
     Box,
     HStack,
     Link,
-    Code as ChakraCode,
 } from "@chakra-ui/react";
 
 type Props = {

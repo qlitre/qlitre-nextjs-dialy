@@ -98,9 +98,10 @@ const code = {
     component: Box,
     props: {
         fontSize: 'md',
-        p: "0.2em 0.4em",
-        ml: "0.5rem",
-        mr: "0.5rem"
+        pl: "0.2em",
+        pr: "0.2em",
+        ml: "0.2rem",
+        mr: "0.2rem"
     },
 }
 

@@ -12,7 +12,7 @@ export const Datetime: FC<Props> = ({ datetime, format, ...rest }) => {
 
     return (
         // @ts-expect-error div と推論されてしまう
-        <Box as="time" dateTime={datetime} {...rest} display="block">
+        <Box as="time" dateTime={datetime} {...rest} display="block" fontSize="md">
             {formatter(date, format)}
         </Box>
     );

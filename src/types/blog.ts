@@ -13,4 +13,5 @@ export type Post = {
     tags: Tag[];
     text: string,
     createdAt: string
+    publishedAt: string
 };
