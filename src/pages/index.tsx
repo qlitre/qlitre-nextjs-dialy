@@ -1,14 +1,15 @@
 import type { NextPage } from 'next'
-import { client } from '../libs/client';
-import { Post } from '../types/blog'
-import { Header } from '../components/Header'
+import { client } from 'libs/client';
+import { Post } from 'types/blog'
+import { Header } from 'components/Header'
 import {
   Box,
   Container,
   Heading,
 } from "@chakra-ui/react";
-import { PostList } from '../components/PostList'
-import { Pagination } from '../components/Pagination';
+import { PostList } from 'components/PostList'
+import { Pagination } from 'components/Pagination';
+import { Breadcrumbs } from 'components/Breadcrumbs'
 
 export const getStaticProps = async () => {
   const data = await client.getList({ endpoint: "post" });
@@ -25,22 +26,17 @@ type Props = {
   totalCount: number
 };
 
-
-
 const Home: NextPage<Props> = ({ posts, totalCount }) => {
 
   return (
     <Box>
       <Header />
       <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-        <Heading as="h1" marginBottom="8" fontSize="2xl">
-          Blog
-        </Heading>
+        <Breadcrumbs />
         <PostList posts={posts} />
         <Pagination totalCount={totalCount} />
       </Container>
     </Box>
-
   )
 }
 

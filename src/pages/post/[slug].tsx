@@ -1,3 +1,6 @@
+import { client } from "libs/client";
+import type { Post } from "types/blog";
+
 import { GetStaticPaths, GetStaticProps, } from "next";
 import {
   Box,
@@ -5,13 +8,14 @@ import {
   Divider,
   Heading,
   Stack,
+  Wrap,
+  WrapItem
 } from "@chakra-ui/react";
 import React from "react";
-import { Header } from "../../components/Header";
-import { MarkdownTemplate } from "../../components/MarkdownTemplate";
-import { client } from "../../libs/client";
-import type { Post } from "../../types/blog";
-
+import { Header } from "components/Header";
+import { MarkdownTemplate } from "components/MarkdownTemplate";
+import { TagLink } from "components/TagLink";
+import { Datetime } from "components/Datetime";
 
 type Props = {
   post: Post;
@@ -26,6 +30,14 @@ export default function Article({ post }: Props) {
           <Heading as="h1" fontSize="4xl" lineHeight={1.6}>
             {post.title}
           </Heading>
+          <Datetime datetime={post.publishedAt} format="yyyy-MM-dd" display="block" fontSize="xl" color="gray.500" mt="2" />
+          <Wrap>
+            {post.tag.map(tag => (
+              <WrapItem key={tag.id}>
+                <TagLink tag={tag} />
+              </WrapItem>
+            ))}
+          </Wrap>
         </Stack>
         <Divider marginY="8" />
         <MarkdownTemplate source={post.text} mb="16" />

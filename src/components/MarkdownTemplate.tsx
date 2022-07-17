@@ -3,14 +3,17 @@ import {
     Box,
     Text,
     UnorderedList,
+    OrderedList,
     Heading,
     ListItem,
     Link,
+    Image,
     Code as ChakraCode,
 } from "@chakra-ui/react";
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
 import 'highlight.js/styles/hybrid.css'
+
 
 type MarkdownTemplateProps = {
     source: string;
@@ -56,7 +59,7 @@ const h3 = {
 const p = {
     component: Text,
     props: {
-        lineHeight: "1.7",
+        lineHeight: "1.8",
         mb: "10px",
         fontSize: "18px",
         color: "##000",
@@ -67,26 +70,47 @@ const p = {
 const ul = {
     component: UnorderedList,
     props: {
-        mt: 0,
-        mb: 0,
-        lineHeight: "1.6",
+        my: "1",
+        lineHeight: "2",
+        pl: "1em"
     },
+};
+
+const ol = {
+    component: OrderedList,
+    props: {
+        my: "1",
+        lineHeight: "2",
+        pl: "1em"
+    }
 };
 
 const li = {
     component: ListItem,
     props: {
-        mb: "1em",
         fontSize: "18px"
     },
 };
+
+const blockquote = {
+    component: Box,
+    props: {
+        color: "gray.500",
+        my: "1em",
+        pl: "2em",
+        borderLeft: '2px',
+        borderColor: 'gray.500',
+        fontSize: "18px",
+        lineHight: "1.8",
+    }
+}
 
 const a = {
     component: Link,
     props: {
         isExternal: true,
         textDecoration: "none",
-        color: "#0058B3",
+        color: "#3182CE",
         _hover: {
             textDecoration: "none",
             color: "#4593e6",
@@ -94,14 +118,20 @@ const a = {
     },
 };
 
+const img = {
+    component: Image,
+    props: {
+        border: "1px",
+        borderColor: "gray.300"
+    }
+}
+
 const code = {
     component: Box,
     props: {
         fontSize: 'md',
-        pl: "0.2em",
-        pr: "0.2em",
-        ml: "0.2rem",
-        mr: "0.2rem"
+        px: "0.2em",
+        mx: "0.2rem",
     },
 }
 
@@ -145,8 +175,26 @@ const options: HTMLReactParserOptions = {
                     </UnorderedList>
                 );
             }
+            if (domNode.name === 'ol') {
+                return (
+                    <OrderedList {...ol.props}>
+                        {domToReact(domNode.children, options)}
+                    </OrderedList>
+                )
+            }
             if (domNode.name === "li") {
-                return <ListItem {...li.props}>{domToReact(domNode.children, options)}</ListItem>;
+                return (
+                    <ListItem {...li.props}>
+                        {domToReact(domNode.children, options)}
+                    </ListItem>
+                )
+            }
+            if (domNode.name === 'blockquote') {
+                return (
+                    <Box {...blockquote.props}>
+                        {domToReact(domNode.children, options)}
+                    </Box>
+                )
             }
             if (domNode.name === "a") {
                 return (
@@ -160,7 +208,13 @@ const options: HTMLReactParserOptions = {
                     <Text {...p.props}>{domToReact(domNode.children, options)}</Text>
                 );
             }
+            if (domNode.name === 'img') {
+                return (
+                    <Image {...img.props} src={domNode.attribs.src} />
+                )
+            }
             if (domNode.name === 'code') {
+                // 通常のcodeタグとpre→codeタグを区別する
                 if (domNode.parent.name === 'pre') {
                     const highlightCode = highlight.highlightAuto(
                         domToReact(domNode.children) as string,

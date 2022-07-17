@@ -1,9 +1,9 @@
-import { Pagination } from '../../components/Pagination';
-import { client } from '../../libs/client';
+import { Pagination } from 'components/Pagination';
+import { client } from 'libs/client';
 import { GetStaticPaths, GetStaticProps, } from "next";
-import type { Post } from "../../types/blog";
-import { Header } from '../../components/Header'
-import { PostList } from '../../components/PostList';
+import type { Post } from "types/blog";
+import { Header } from 'components/Header'
+import { PostList } from 'components/PostList';
 import {
     Box,
     Container,
@@ -24,7 +24,7 @@ export default function BlogPageId({ posts, totalCount }: Props) {
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
                 <Heading as="h1" marginBottom="8" fontSize="2xl">
-                    Blog
+                    Home
                 </Heading>
                 <PostList posts={posts} />
                 <Pagination totalCount={totalCount} />

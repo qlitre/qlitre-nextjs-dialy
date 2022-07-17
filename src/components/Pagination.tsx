@@ -1,4 +1,3 @@
-import Router from 'next/router';
 import {
     Box,
     HStack,
@@ -7,9 +6,14 @@ import {
 
 type Props = {
     totalCount: number;
+    tagId?: string;
 };
 
-export const Pagination = ({ totalCount }: Props) => {
+export const Pagination = ({ totalCount, tagId }: Props) => {
+    const getPath = (p: number) => {
+        if (tagId) return `/tags/${tagId}/page/${p}`
+        return `/page/${p}`
+    }
     const PER_PAGE = 10;
     const range = (start: number, end: number) =>
         [...Array(end - start + 1)].map((_, i) => start + i)
@@ -17,12 +21,11 @@ export const Pagination = ({ totalCount }: Props) => {
         <Box>
             <HStack spacing='24px' justifyContent="center">
                 {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-                    <Link href={`/page/${number}`} fontSize="3xl" key={index}>
+                    <Link href={getPath(number)} fontSize="3xl" key={index}>
                         {number}
                     </Link>
                 ))}
             </HStack>
-
         </Box>
     );
 };

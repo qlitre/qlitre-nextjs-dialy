@@ -6,7 +6,7 @@ import {
     useColorModeValue,
     useColorMode,
     Container,
-    Heading
+    Heading,
 } from '@chakra-ui/react';
 import NextLink from "next/link";
 import { FC } from 'react';

@@ -1,4 +1,4 @@
-import { Box, HTMLChakraProps } from "@chakra-ui/react";
+import { Box, HTMLChakraProps, Text } from "@chakra-ui/react";
 import { parseISO, format as formatter } from "date-fns";
 import { useMemo, FC } from "react";
 
@@ -12,8 +12,8 @@ export const Datetime: FC<Props> = ({ datetime, format, ...rest }) => {
 
     return (
         // @ts-expect-error div と推論されてしまう
-        <Box as="time" dateTime={datetime} {...rest} display="block" fontSize="md">
+        <Text dateTime={datetime} {...rest}>
             {formatter(date, format)}
-        </Box>
+        </Text>
     );
 };

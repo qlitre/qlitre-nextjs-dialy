@@ -1,6 +1,7 @@
 import { MicroCMSImage } from 'microcms-js-sdk'
 
-export type Tag = {
+/*Tagという名前だとChakra UIのTagと名前が衝突する*/
+export type PostTag = {
     id: string,
     name: string
 }
@@ -10,7 +11,7 @@ export type Post = {
     title: string;
     description: string,
     keywords: string,
-    tags: Tag[];
+    tag: PostTag[];
     text: string,
     createdAt: string
     publishedAt: string
