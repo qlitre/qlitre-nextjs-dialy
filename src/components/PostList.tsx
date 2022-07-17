@@ -42,7 +42,7 @@ export const PostList = ({ posts }: Props) => {
                             </Heading>
                         </Link>
                         <Datetime datetime={post.publishedAt} format="yyyy-MM-dd" display="block" fontSize="xl" color="gray.500" mt="2" />
-                        <Text mt="1" fontSize="xl" color="gray.700">{post.description}</Text>
+                        <Text mt="1" fontSize="xl" color="gray.500">{post.description}</Text>
                         <Link href={`/post/${post.id}`}>
                             <Button
                                 colorScheme='teal'

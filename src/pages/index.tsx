@@ -5,7 +5,6 @@ import { Header } from 'components/Header'
 import {
   Box,
   Container,
-  Heading,
 } from "@chakra-ui/react";
 import { PostList } from 'components/PostList'
 import { Pagination } from 'components/Pagination';
