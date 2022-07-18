@@ -127,7 +127,7 @@ const code = {
 
 const preCode = {
     props: {
-        fontSize: "18px",
+        fontSize: "16px",
     }
 }
 
