@@ -30,7 +30,7 @@ export default function Article({ post }: Props) {
           <Heading as="h1" fontSize="4xl" lineHeight={1.6}>
             {post.title}
           </Heading>
-          <Datetime datetime={post.publishedAt} format="yyyy-MM-dd" display="block" fontSize="xl" color="gray.500" mt="2" />
+          <Datetime datetime={post.publishedAt} />
           <Wrap>
             {post.tag.map(tag => (
               <WrapItem key={tag.id}>

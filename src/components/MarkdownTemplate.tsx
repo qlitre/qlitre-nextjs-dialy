@@ -8,23 +8,22 @@ import {
     ListItem,
     Link,
     Image,
-    Code as ChakraCode,
+    Code as ChakraCode
 } from "@chakra-ui/react";
+
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
 import 'highlight.js/styles/hybrid.css'
-
 
 type MarkdownTemplateProps = {
     source: string;
 } & BoxProps;
 
 const h1 = {
-    component: Text,
     props: {
         mt: "24px",
         mb: "16px",
-        lineHeight: 1.25,
+        lineHeight: "1.25",
         fontWeight: "600",
         pb: ".3em",
         fontSize: "2em",
@@ -33,11 +32,10 @@ const h1 = {
 };
 
 const h2 = {
-    component: Text,
     props: {
         mt: "24px",
         mb: "16px",
-        lineHeight: 1.25,
+        lineHeight: "1.25",
         fontWeight: "600",
         pb: ".3em",
         fontSize: "1.5em",
@@ -46,18 +44,16 @@ const h2 = {
 };
 
 const h3 = {
-    component: Text,
     props: {
         mt: "24px",
         mb: "16px",
-        lineHeight: 1.25,
+        lineHeight: "1.25",
         fontWeight: "600",
         fontSize: "1.25em",
     },
 };
 
 const p = {
-    component: Text,
     props: {
         lineHeight: "1.8",
         mb: "10px",
@@ -68,7 +64,6 @@ const p = {
 
 
 const ul = {
-    component: UnorderedList,
     props: {
         my: "1",
         lineHeight: "2",
@@ -77,7 +72,6 @@ const ul = {
 };
 
 const ol = {
-    component: OrderedList,
     props: {
         my: "1",
         lineHeight: "2",
@@ -86,14 +80,12 @@ const ol = {
 };
 
 const li = {
-    component: ListItem,
     props: {
         fontSize: "18px"
     },
 };
 
 const blockquote = {
-    component: Box,
     props: {
         color: "gray.500",
         my: "1em",
@@ -101,12 +93,11 @@ const blockquote = {
         borderLeft: '2px',
         borderColor: 'gray.500',
         fontSize: "18px",
-        lineHight: "1.8",
+        lineHeight: "1.8",
     }
 }
 
 const a = {
-    component: Link,
     props: {
         isExternal: true,
         textDecoration: "none",
@@ -127,7 +118,6 @@ const img = {
 }
 
 const code = {
-    component: Box,
     props: {
         fontSize: 'md',
         px: "0.2em",
@@ -136,9 +126,8 @@ const code = {
 }
 
 const preCode = {
-    component: ChakraCode,
     props: {
-        fontSize: "16px",
+        fontSize: "18px",
     }
 }
 
@@ -189,9 +178,14 @@ const options: HTMLReactParserOptions = {
                     </ListItem>
                 )
             }
+            if (domNode.name === "p") {
+                return (
+                    <Text {...p.props}>{domToReact(domNode.children, options)}</Text>
+                );
+            }
             if (domNode.name === 'blockquote') {
                 return (
-                    <Box {...blockquote.props}>
+                    <Box as="blockquote" {...blockquote.props}>
                         {domToReact(domNode.children, options)}
                     </Box>
                 )
@@ -201,11 +195,6 @@ const options: HTMLReactParserOptions = {
                     <Link {...a.props} href={domNode.attribs.href}>
                         {domToReact(domNode.children, options)}
                     </Link>
-                );
-            }
-            if (domNode.name === "p") {
-                return (
-                    <Text {...p.props}>{domToReact(domNode.children, options)}</Text>
                 );
             }
             if (domNode.name === 'img') {
@@ -234,9 +223,9 @@ const options: HTMLReactParserOptions = {
                 }
             }
         }
-
     }
 }
+
 
 export const MarkdownTemplate = (props: MarkdownTemplateProps) => {
     return <Box {...props}>{parse(props.source, options)}</Box>;

@@ -1,19 +1,23 @@
-import { Box, HTMLChakraProps, Text } from "@chakra-ui/react";
-import { parseISO, format as formatter } from "date-fns";
-import { useMemo, FC } from "react";
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
+
+import { Text, Box } from "@chakra-ui/react";
+import { FC } from "react";
 
 type Props = {
     datetime: string;
-    format: string;
-} & Omit<HTMLChakraProps<"time">, "children" | "dateTime">;
+}
 
-export const Datetime: FC<Props> = ({ datetime, format, ...rest }) => {
-    const date = useMemo(() => parseISO(datetime), [datetime]);
-
+export const Datetime: FC<Props> = ({ datetime }) => {
+    dayjs.extend(utc)
+    dayjs.extend(timezone);
+    const formatDate = dayjs.utc(datetime).tz('Asia/Tokyo').format('YYYY-MM-DD')
     return (
-        // @ts-expect-error div と推論されてしまう
-        <Text dateTime={datetime} {...rest}>
-            {formatter(date, format)}
-        </Text>
+        <Box mt="4">
+            <Text as="time" dateTime={formatDate} fontSize="xl" color="gray.500">
+                {formatDate}
+            </Text>
+        </Box>
     );
 };

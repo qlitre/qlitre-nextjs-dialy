@@ -33,7 +33,7 @@ const Home: NextPage<Props> = ({ posts, totalCount }) => {
       <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
         <Breadcrumbs />
         <PostList posts={posts} />
-        <Pagination totalCount={totalCount} />
+        <Pagination totalCount={totalCount}/>
       </Container>
     </Box>
   )

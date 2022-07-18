@@ -19,7 +19,7 @@ export const Pagination = ({ totalCount, tagId }: Props) => {
         [...Array(end - start + 1)].map((_, i) => start + i)
     return (
         <Box>
-            <HStack spacing='24px' justifyContent="center">
+            <HStack spacing='10' justifyContent="center">
                 {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
                     <Link href={getPath(number)} fontSize="3xl" key={index}>
                         {number}
