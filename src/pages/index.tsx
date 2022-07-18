@@ -9,9 +9,10 @@ import {
 import { PostList } from 'components/PostList'
 import { Pagination } from 'components/Pagination';
 import { Breadcrumbs } from 'components/Breadcrumbs'
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 export const getStaticProps = async () => {
-  const data = await client.getList({ endpoint: "post" });
+  const data = await client.getList({ endpoint: "post", queries: { limit: BLOG_PER_PAGE } });
   return {
     props: {
       posts: data.contents,
@@ -33,7 +34,7 @@ const Home: NextPage<Props> = ({ posts, totalCount }) => {
       <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
         <Breadcrumbs />
         <PostList posts={posts} />
-        <Pagination totalCount={totalCount}/>
+        <Pagination totalCount={totalCount} />
       </Container>
     </Box>
   )

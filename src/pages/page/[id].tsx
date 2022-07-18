@@ -9,16 +9,16 @@ import {
     Container,
     Heading,
 } from "@chakra-ui/react";
-
-const PER_PAGE = 10;
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 type Props = {
     posts: Post[]
     totalCount: number
+    currentPage: number
 };
 
 
-export default function BlogPageId({ posts, totalCount }: Props) {
+export default function BlogPageId({ posts, totalCount, currentPage }: Props) {
     return (
         <Box>
             <Header />
@@ -27,7 +27,7 @@ export default function BlogPageId({ posts, totalCount }: Props) {
                     Home
                 </Heading>
                 <PostList posts={posts} />
-                <Pagination totalCount={totalCount} />
+                <Pagination totalCount={totalCount} currentPage={currentPage} />
             </Container>
         </Box>
     );
@@ -35,22 +35,28 @@ export default function BlogPageId({ posts, totalCount }: Props) {
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const repos = await client.get({ endpoint: "post" });
-    const pageNumbers = [];
     const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);
-    const paths = range(1, Math.ceil(repos.totalCount / PER_PAGE)).map((repo) => `/page/${repo}`);
+    const paths = range(1, Math.ceil(repos.totalCount / BLOG_PER_PAGE)).map((repo) => `/page/${repo}`);
     return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ params }) => {
     if (!params) throw new Error("Component file name must has params.");
-    const id = params.id;
+    const pageId = Number(params.id);
 
-    const data = await client.get({ endpoint: "post", queries: { offset: (Number(id) - 1) * 10, limit: 10 } });
+    const data = await client.get({
+        endpoint: "post",
+        queries: {
+            offset: (Number(pageId) - 1) * BLOG_PER_PAGE,
+            limit: BLOG_PER_PAGE
+        }
+    });
 
     return {
         props: {
             posts: data.contents,
             totalCount: data.totalCount,
+            currentPage: pageId
         },
     };
 };

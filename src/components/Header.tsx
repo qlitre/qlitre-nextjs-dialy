@@ -7,6 +7,8 @@ import {
     useColorMode,
     Container,
     Heading,
+    Link,
+    HStack,
 } from '@chakra-ui/react';
 import NextLink from "next/link";
 import { FC } from 'react';
@@ -22,9 +24,21 @@ export const Header: FC = () => {
                             Qlitre&rsquo;s Dialy
                         </Heading>
                     </NextLink>
-                    <Button size='lg' onClick={toggleColorMode}>
-                        {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-                    </Button>
+                    <HStack as="nav" spacing="3">
+                        <Link
+                            isExternal
+                            href="https://github.com/qlitre/qlitre-nextjs-dialy"
+                            display="flex"
+                            alignItems="center"
+                            gap="2"
+                            fontWeight="bold"
+                        >
+                            GitHub
+                        </Link>
+                        <Button size='lg' onClick={toggleColorMode}>
+                            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+                        </Button>
+                    </HStack>
                 </Flex>
             </Container>
         </Box>

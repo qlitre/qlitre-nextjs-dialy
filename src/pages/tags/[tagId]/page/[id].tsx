@@ -9,26 +9,26 @@ import type { PostTag } from 'types/blog';
 import {
     Box,
     Container,
-    Heading,
 } from "@chakra-ui/react";
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
-const PER_PAGE = 10;
 
 type Props = {
     posts: Post[]
     totalCount: number
+    currentPage: number
     tag: PostTag
 };
 
 
-export default function TagId({ posts, totalCount, tag }: Props) {
+export default function TagId({ posts, totalCount, tag, currentPage }: Props) {
     return (
         <Box>
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
                 <Breadcrumbs tag={tag} />
                 <PostList posts={posts} />
-                <Pagination totalCount={totalCount} tagId={tag.id} />
+                <Pagination totalCount={totalCount} tagId={tag.id} currentPage={currentPage} />
             </Container>
         </Box>
     );
@@ -53,7 +53,7 @@ const getAllTagPagePaths = async () => {
                     const range = (start: number, end: number) =>
                         [...Array(end - start + 1)].map((_, i) => start + i)
 
-                    return range(1, Math.ceil(totalCount / PER_PAGE)).map(
+                    return range(1, Math.ceil(totalCount / BLOG_PER_PAGE)).map(
                         (repo) => `/tags/${item.id}/page/${repo}`
                     )
                 })
@@ -71,15 +71,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 
 export const getStaticProps: GetStaticProps<Props, { tagId: string, id: string }> = async ({ params }) => {
-    if (!params) throw new Error("Component file name must has params.");
+    if (!params) throw new Error("Error Tag ID Not Found");
     const tagId = params.tagId
-    const id = params.id;
+    const pageId = Number(params.id);
 
     const data = await client.getList<Post>({
         endpoint: "post",
         queries: {
-            offset: (Number(id) - 1) * 10,
-            limit: 10, filters: `tag[contains]${tagId}`
+            offset: (Number(pageId) - 1) * BLOG_PER_PAGE,
+            limit: BLOG_PER_PAGE, filters: `tag[contains]${tagId}`
         }
     });
 
@@ -91,6 +91,7 @@ export const getStaticProps: GetStaticProps<Props, { tagId: string, id: string }
         props: {
             posts: data.contents,
             totalCount: data.totalCount,
+            currentPage: pageId,
             tag: tag
         },
     };
