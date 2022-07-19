@@ -39,6 +39,7 @@ export const SEO: React.FC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
             noindex={noindex}
             twitter={{
                 cardType: "summary_large_image",
+                site: `@${config.social.twitter}`,
                 handle: `@${config.social.twitter}`,
             }}
             openGraph={{
