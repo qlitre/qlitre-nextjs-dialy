@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import NextLink from "next/link";
 import { FC } from 'react';
+import { config } from 'settings/siteSettings'
 
 export const Header: FC = () => {
     const { colorMode, toggleColorMode } = useColorMode();
@@ -27,7 +28,7 @@ export const Header: FC = () => {
                     <HStack as="nav" spacing="3">
                         <Link
                             isExternal
-                            href="https://github.com/qlitre/qlitre-nextjs-dialy"
+                            href={config.repository}
                             display="flex"
                             alignItems="center"
                             gap="2"
