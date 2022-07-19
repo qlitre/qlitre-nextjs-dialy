@@ -10,6 +10,7 @@ import {
     Heading,
 } from "@chakra-ui/react";
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { SEO } from 'components/SEO';
 
 type Props = {
     posts: Post[]
@@ -21,6 +22,12 @@ type Props = {
 export default function BlogPageId({ posts, totalCount, currentPage }: Props) {
     return (
         <Box>
+            <SEO
+                type="website"
+                pagePath={`/page/${currentPage}`}
+                title={`ページ: ${currentPage}`}
+                description={`${currentPage}ページ目の記事一覧`}
+            />
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
                 <Heading as="h1" marginBottom="8" fontSize="2xl">

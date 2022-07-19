@@ -10,6 +10,7 @@ import { PostList } from 'components/PostList'
 import { Pagination } from 'components/Pagination';
 import { Breadcrumbs } from 'components/Breadcrumbs'
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { SEO } from 'components/SEO';
 
 export const getStaticProps = async () => {
   const data = await client.getList({ endpoint: "post", queries: { limit: BLOG_PER_PAGE } });
@@ -30,6 +31,7 @@ const Home: NextPage<Props> = ({ posts, totalCount }) => {
 
   return (
     <Box>
+      <SEO type="website" pagePath="/" title="Home" description="くりったーの日記サイト" />
       <Header />
       <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
         <Breadcrumbs />

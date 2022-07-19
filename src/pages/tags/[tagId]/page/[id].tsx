@@ -11,7 +11,7 @@ import {
     Container,
 } from "@chakra-ui/react";
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
-
+import { SEO } from 'components/SEO'
 
 type Props = {
     posts: Post[]
@@ -24,6 +24,12 @@ type Props = {
 export default function TagId({ posts, totalCount, tag, currentPage }: Props) {
     return (
         <Box>
+            <SEO
+                type="website"
+                pagePath={`/tags/${tag.id}/page/${currentPage}`}
+                title={`tag: ${tag.name}`}
+                description={`"${tag.name}" でタグ付けされた記事一覧`}
+            />
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
                 <Breadcrumbs tag={tag} />

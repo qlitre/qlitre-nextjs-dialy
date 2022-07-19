@@ -16,6 +16,8 @@ import { Header } from "components/Header";
 import { MarkdownTemplate } from "components/MarkdownTemplate";
 import { TagLink } from "components/TagLink";
 import { Datetime } from "components/Datetime";
+import { SEO } from 'components/SEO'
+import { jstDatetime } from "utils/utils";
 
 type Props = {
   post: Post;
@@ -24,6 +26,14 @@ type Props = {
 export default function Article({ post }: Props) {
   return (
     <Box>
+      <SEO
+        type="article"
+        pagePath={`/post/${post.id}`}
+        publishedTime={jstDatetime(post.publishedAt)}
+        tags={post.tag.map((tag) => tag.name)}
+        title={post.title}
+        description={post.description}
+      />
       <Header />
       <Container as="main" maxW="container.md" marginTop="4" marginBottom="16">
         <Stack spacing="8">

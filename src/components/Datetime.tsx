@@ -1,6 +1,4 @@
-import dayjs from 'dayjs';
-import utc from 'dayjs/plugin/utc';
-import timezone from 'dayjs/plugin/timezone';
+import { jstDatetime } from 'utils/utils';
 
 import { Text, Box } from "@chakra-ui/react";
 import { FC } from "react";
@@ -10,9 +8,7 @@ type Props = {
 }
 
 export const Datetime: FC<Props> = ({ datetime }) => {
-    dayjs.extend(utc)
-    dayjs.extend(timezone);
-    const formatDate = dayjs.utc(datetime).tz('Asia/Tokyo').format('YYYY-MM-DD')
+    const formatDate = jstDatetime(datetime, 'YYYY-MM-DD')
     return (
         <Box mt="4">
             <Text as="time" dateTime={formatDate} fontSize="xl" color="gray.500">

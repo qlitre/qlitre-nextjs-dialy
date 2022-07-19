@@ -152,9 +152,9 @@ const options: HTMLReactParserOptions = {
             }
             if (domNode.name === "h3") {
                 return (
-                    <Text as="h3" {...h3.props}>
+                    <Heading as="h3" {...h3.props}>
                         {domToReact(domNode.children, options)}
-                    </Text>
+                    </Heading>
                 );
             }
             if (domNode.name === "ul") {
