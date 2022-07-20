@@ -1,5 +1,6 @@
 import { NextSeo } from "next-seo";
 import { config } from 'settings/siteSettings'
+import { MicroCMSImage } from "microcms-js-sdk";
 
 type BaseProps = {
     pagePath: string;
@@ -18,7 +19,6 @@ type ForWebsiteProps = {
 type ForArticleProps = {
     type: "article";
     publishedTime: string;
-    thumbnailUrl: string;
     tags: string[];
 };
 

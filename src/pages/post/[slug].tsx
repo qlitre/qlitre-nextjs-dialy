@@ -24,6 +24,7 @@ type Props = {
 };
 
 export default function Article({ post }: Props) {
+  const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined
   return (
     <Box>
       <SEO
@@ -33,7 +34,7 @@ export default function Article({ post }: Props) {
         tags={post.tag.map((tag) => tag.name)}
         title={post.title}
         description={post.description}
-        thumbnailUrl={post.thumbnail.url}
+        thumbnailUrl={thumbnailUrl}
       />
       <Header />
       <Container as="main" maxW="container.md" marginTop="4" marginBottom="16">
