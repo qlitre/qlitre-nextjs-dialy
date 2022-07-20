@@ -89,7 +89,7 @@ const blockquote = {
     props: {
         color: "gray.500",
         my: "1em",
-        pl: "2em",
+        pl: "1em",
         borderLeft: '2px',
         borderColor: 'gray.500',
         fontSize: "18px",
