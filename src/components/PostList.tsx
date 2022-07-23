@@ -18,6 +18,7 @@ type Props = {
 }
 
 export const PostList = ({ posts }: Props) => {
+    const secondaryColor = useSecondaryColor();
     return (
         <>
             {posts.map(post => (
@@ -42,7 +43,7 @@ export const PostList = ({ posts }: Props) => {
                         </Heading>
                     </Link>
                     <Datetime datetime={post.publishedAt} />
-                    <Text mt="1" fontSize="md" color={useSecondaryColor()}>{post.description}</Text>
+                    <Text mt="1" fontSize="md" color={secondaryColor}>{post.description}</Text>
                     <Link href={`/post/${post.id}`}>
                         <Button
                             colorScheme='teal'

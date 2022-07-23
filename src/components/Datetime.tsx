@@ -8,9 +8,10 @@ type Props = {
 
 export const Datetime = ({ datetime }: Props) => {
     const formatDate = jstDatetime(datetime, 'YYYY年MM月DD日')
+    const secondaryColor = useSecondaryColor();
     return (
         <Box mt="4">
-            <Text as="time" dateTime={formatDate} fontSize="sm" color={useSecondaryColor()}>
+            <Text as="time" dateTime={formatDate} fontSize="sm" color={secondaryColor}>
                 {formatDate}
             </Text>
         </Box>

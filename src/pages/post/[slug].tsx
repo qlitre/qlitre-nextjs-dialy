@@ -36,6 +36,7 @@ type Props = {
 
 export default function Article({ post }: Props) {
   const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined;
+  const secondaryColor = useSecondaryColor();
   return (
     <Box>
       <SEO
@@ -54,7 +55,7 @@ export default function Article({ post }: Props) {
             {post.title}
           </Heading>
           <HStack spacing="1">
-            <Text as="p" fontSize="sm" color={useSecondaryColor()}>
+            <Text as="p" fontSize="sm" color={secondaryColor}>
               公開日 :
             </Text>
             <Datetime datetime={post.publishedAt} />
