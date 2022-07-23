@@ -10,8 +10,9 @@ import {
     Text,
     Button,
     Wrap,
-    WrapItem
+    WrapItem,
 } from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 type Props = {
     posts: Post[]
@@ -50,7 +51,7 @@ export const PostList = ({ posts }: Props) => {
                             variant='outline'
                             size="sm"
                             mt="8"
-                        >
+                            rightIcon={<ArrowForwardIcon />}>
                             続きを読む
                         </Button>
                     </Link>
@@ -58,5 +59,5 @@ export const PostList = ({ posts }: Props) => {
                 </Box>
             ))}
         </>
-    )
-}
+    );
+};

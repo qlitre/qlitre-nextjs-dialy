@@ -4,7 +4,9 @@ import { Header } from 'components/Header';
 import { Breadcrumbs } from 'components/Breadcrumbs';
 import { PostList } from 'components/PostList';
 import { Pagination } from 'components/Pagination';
+import { Footer } from 'components/Footer'
 import { Container } from "@chakra-ui/react";
+
 
 type Props = {
     posts: Post[];
@@ -33,6 +35,7 @@ export const Home = ({ posts, totalCount, currentPage, tag }: Props) => {
                 <PostList posts={posts} />
                 {getPagination()}
             </Container>
+            <Footer />
         </>
-    )
+    );
 }

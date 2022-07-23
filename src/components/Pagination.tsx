@@ -9,8 +9,8 @@ import { range } from 'utils/utils'
 
 type Props = {
     totalCount: number;
-    currentPage?: number | undefined;
-    tagId?: string | undefined;
+    currentPage?: number;
+    tagId?: string;
 };
 
 export const Pagination = ({ totalCount, tagId, currentPage = 1 }: Props) => {

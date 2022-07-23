@@ -1,6 +1,6 @@
-import { Icon, Link } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { MdArrowForward } from "react-icons/md";
+import { Icon, Link } from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { MdArrowForward } from 'react-icons/md';
 
 
 export const LinkToHome = () => {

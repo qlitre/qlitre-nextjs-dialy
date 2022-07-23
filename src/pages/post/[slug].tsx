@@ -5,6 +5,7 @@ import { useSecondaryColor } from 'libs/useSecondaryColor';
 import { SEO } from 'components/SEO';
 import { Header } from 'components/Header';
 import { MarkdownTemplate } from 'components/MarkdownTemplate';
+import { Footer } from 'components/Footer';
 import { TagLink } from 'components/TagLink';
 import { Datetime } from 'components/Datetime';
 import { TwitterIntentTweet } from 'components/TwitterIntentTweet';
@@ -38,7 +39,7 @@ export default function Article({ post }: Props) {
   const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined;
   const secondaryColor = useSecondaryColor();
   return (
-    <Box>
+    <>
       <SEO
         type="article"
         pagePath={`/post/${post.id}`}
@@ -102,7 +103,8 @@ export default function Article({ post }: Props) {
           <LinkToHome />
         </Center>
       </Container >
-    </Box >
+      <Footer />
+    </ >
   )
 }
 

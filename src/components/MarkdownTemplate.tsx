@@ -9,10 +9,10 @@ import {
     Link,
     Image,
     Code as ChakraCode
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
-import 'highlight.js/styles/hybrid.css'
+import 'highlight.js/styles/hybrid.css';
 
 type MarkdownTemplateProps = {
     source: string;
@@ -94,7 +94,7 @@ const blockquote = {
         fontSize: "18px",
         lineHeight: "1.8",
     }
-}
+};
 
 const a = {
     props: {
@@ -114,7 +114,7 @@ const img = {
         border: "1px",
         borderColor: "gray.300"
     }
-}
+};
 
 const code = {
     props: {
@@ -122,13 +122,13 @@ const code = {
         px: "0.2em",
         mx: "0.2rem",
     },
-}
+};
 
 const preCode = {
     props: {
         fontSize: "16px",
     }
-}
+};
 
 const languageSubset = ['js', 'html', 'css', 'xml', 'typescript', 'python'];
 
@@ -141,89 +141,88 @@ const options: HTMLReactParserOptions = {
                         {domToReact(domNode.children, options)}
                     </Heading>
                 );
-            }
+            };
             if (domNode.name === "h2") {
                 return (
                     <Heading as="h2" {...h2.props}>
                         {domToReact(domNode.children, options)}
                     </Heading>
                 );
-            }
+            };
             if (domNode.name === "h3") {
                 return (
                     <Heading as="h3" {...h3.props}>
                         {domToReact(domNode.children, options)}
                     </Heading>
                 );
-            }
+            };
             if (domNode.name === "ul") {
                 return (
                     <UnorderedList {...ul.props}>
                         {domToReact(domNode.children, options)}
                     </UnorderedList>
                 );
-            }
+            };
             if (domNode.name === 'ol') {
                 return (
                     <OrderedList {...ol.props}>
                         {domToReact(domNode.children, options)}
                     </OrderedList>
-                )
-            }
+                );
+            };
             if (domNode.name === "li") {
                 return (
                     <ListItem {...li.props}>
                         {domToReact(domNode.children, options)}
                     </ListItem>
-                )
-            }
+                );
+            };
             if (domNode.name === "p") {
                 return (
                     <Text {...p.props}>{domToReact(domNode.children, options)}</Text>
                 );
-            }
+            };
             if (domNode.name === 'blockquote') {
                 return (
                     <Box as="blockquote" {...blockquote.props}>
                         {domToReact(domNode.children, options)}
                     </Box>
-                )
-            }
+                );
+            };
             if (domNode.name === "a") {
                 return (
                     <Link {...a.props} href={domNode.attribs.href}>
                         {domToReact(domNode.children, options)}
                     </Link>
                 );
-            }
+            };
             if (domNode.name === 'img') {
                 return (
                     <Image {...img.props} src={domNode.attribs.src} />
-                )
-            }
+                );
+            };
             if (domNode.name === 'code') {
                 // 通常のcodeタグとpre→codeタグを区別する
                 if (domNode.parent.name === 'pre') {
                     const highlightCode = highlight.highlightAuto(
                         domToReact(domNode.children) as string,
-                        languageSubset,
+                        languageSubset
                     ).value;
                     return (
                         <Box as="code" className="hljs" {...preCode.props}>
                             {parse(highlightCode)}
                         </Box>
                     );
-                } else {
-                    return (
-                        <ChakraCode {...code.props}>
-                            {domToReact(domNode.children, options)}
-                        </ChakraCode>
-                    )
                 }
-            }
-        }
+                return (
+                    <ChakraCode {...code.props}>
+                        {domToReact(domNode.children, options)}
+                    </ChakraCode>
+                );
+            };
+        };
     }
-}
+};
 
 
 export const MarkdownTemplate = (props: MarkdownTemplateProps) => {

@@ -7,9 +7,9 @@ import { BLOG_PER_PAGE } from 'settings/siteSettings';
 import { range } from 'utils/utils'
 
 type Props = {
-    posts: Post[]
-    totalCount: number
-    currentPage: number
+    posts: Post[];
+    totalCount: number;
+    currentPage: number;
 };
 
 
