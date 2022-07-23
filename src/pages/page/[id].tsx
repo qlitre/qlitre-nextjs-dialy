@@ -1,16 +1,16 @@
-import { Pagination } from 'components/Pagination';
-import { client } from 'libs/client';
-import { GetStaticPaths, GetStaticProps, } from "next";
+import type { GetStaticPaths, GetStaticProps, } from "next";
 import type { Post } from "types/blog";
-import { Header } from 'components/Header'
+import { client } from 'libs/client';
+import { SEO } from 'components/SEO';
+import { Header } from 'components/Header';
+import { Breadcrumbs } from 'components/Breadcrumbs';
 import { PostList } from 'components/PostList';
+import { Pagination } from 'components/Pagination';
 import {
     Box,
     Container,
-    Heading,
 } from "@chakra-ui/react";
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
-import { SEO } from 'components/SEO';
 
 type Props = {
     posts: Post[]
@@ -30,9 +30,7 @@ export default function BlogPageId({ posts, totalCount, currentPage }: Props) {
             />
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-                <Heading as="h1" marginBottom="8" fontSize="2xl">
-                    Home
-                </Heading>
+                <Breadcrumbs />
                 <PostList posts={posts} />
                 <Pagination totalCount={totalCount} currentPage={currentPage} />
             </Container>

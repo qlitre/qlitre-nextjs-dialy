@@ -10,7 +10,6 @@ import {
     Image,
     Code as ChakraCode
 } from "@chakra-ui/react";
-
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
 import 'highlight.js/styles/hybrid.css'

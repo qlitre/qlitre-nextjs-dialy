@@ -1,7 +1,6 @@
-export const BLOG_PER_PAGE = 10
+export const BLOG_PER_PAGE = 10;
 export const config = {
-    siteTitle: "QLITRE-DIALY",
-
+    siteTitle: "QLITRE DIALY",
     siteUrl: process.env.NODE_ENV === 'production'
         ? 'https://www.qlitre-dialy.ink'
         : 'http://localhost:3000',
@@ -10,4 +9,4 @@ export const config = {
         twitter: "kuri_tter",
     },
     excerptLength: 160,
-}
+};

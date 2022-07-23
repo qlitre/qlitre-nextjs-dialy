@@ -1,13 +1,16 @@
+import NextLink from "next/link";
+import type { PostTag } from "types/blog";
 import {
     Link,
     Tag,
     TagLabel
 } from "@chakra-ui/react";
-import NextLink from "next/link";
-import { FC } from "react";
-import type { PostTag } from "types/blog";
 
-export const TagLink: FC<{ tag: PostTag }> = ({ tag }) => {
+type Props = {
+    tag: PostTag;
+}
+
+export const TagLink = ({ tag }: Props) => {
     return (
         <NextLink key={tag.id} href={`/tags/${tag.id}/page/1`} passHref>
             <Link>

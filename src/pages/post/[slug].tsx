@@ -1,7 +1,11 @@
-import { client } from "libs/client";
+import type { GetStaticPaths, GetStaticProps, } from "next";
 import type { Post } from "types/blog";
-
-import { GetStaticPaths, GetStaticProps, } from "next";
+import { client } from "libs/client";
+import { SEO } from 'components/SEO';
+import { Header } from "components/Header";
+import { MarkdownTemplate } from "components/MarkdownTemplate";
+import { TagLink } from "components/TagLink";
+import { Datetime } from "components/Datetime";
 import {
   Box,
   Container,
@@ -12,11 +16,6 @@ import {
   WrapItem
 } from "@chakra-ui/react";
 import React from "react";
-import { Header } from "components/Header";
-import { MarkdownTemplate } from "components/MarkdownTemplate";
-import { TagLink } from "components/TagLink";
-import { Datetime } from "components/Datetime";
-import { SEO } from 'components/SEO'
 import { jstDatetime } from "utils/utils";
 
 type Props = {
@@ -24,7 +23,7 @@ type Props = {
 };
 
 export default function Article({ post }: Props) {
-  const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined
+  const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined;
   return (
     <Box>
       <SEO
@@ -61,9 +60,8 @@ export default function Article({ post }: Props) {
 export const getStaticPaths: GetStaticPaths = async () => {
   // limitがデフォルトで10なので、一旦totalCountを取得してから再度リクエストを投げる
   const data = await client.getList<Post>({ endpoint: "post", queries: { fields: 'id' } });
-  const totalCount = data.totalCount
+  const totalCount = data.totalCount;
   const allData = await client.getList<Post>({ endpoint: "post", queries: { limit: totalCount } });
-
   const paths = allData.contents.map((content) => `/post/${content.id}`);
   return { paths, fallback: false };
 };

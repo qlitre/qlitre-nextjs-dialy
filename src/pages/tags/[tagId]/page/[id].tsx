@@ -1,23 +1,23 @@
-import { Pagination } from 'components/Pagination';
-import { client } from 'libs/client';
-import { GetStaticPaths, GetStaticProps, } from "next";
-import type { Post } from "types/blog";
-import { Header } from 'components/Header'
-import { PostList } from 'components/PostList';
-import { Breadcrumbs } from 'components/Breadcrumbs'
+import type { GetStaticPaths, GetStaticProps, } from "next";
 import type { PostTag } from 'types/blog';
+import type { Post } from "types/blog";
+import { client } from 'libs/client';
+import { Header } from 'components/Header';
+import { SEO } from 'components/SEO';
+import { Breadcrumbs } from 'components/Breadcrumbs';
+import { PostList } from 'components/PostList';
+import { Pagination } from 'components/Pagination';
 import {
     Box,
     Container,
 } from "@chakra-ui/react";
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
-import { SEO } from 'components/SEO'
 
 type Props = {
-    posts: Post[]
-    totalCount: number
-    currentPage: number
-    tag: PostTag
+    posts: Post[];
+    totalCount: number;
+    currentPage: number;
+    tag: PostTag;
 };
 
 
@@ -39,7 +39,6 @@ export default function TagId({ posts, totalCount, tag, currentPage }: Props) {
         </Box>
     );
 }
-
 
 const getAllTagPagePaths = async () => {
     const resTag = await client.getList({
@@ -65,20 +64,18 @@ const getAllTagPagePaths = async () => {
                 })
             return result
         })
-    )
-    return paths.flat()
+    );
+    return paths.flat();
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
     const paths = await getAllTagPagePaths()
-    return { paths, fallback: false }
+    return { paths, fallback: false };
 }
-
-
 
 export const getStaticProps: GetStaticProps<Props, { tagId: string, id: string }> = async ({ params }) => {
     if (!params) throw new Error("Error Tag ID Not Found");
-    const tagId = params.tagId
+    const tagId = params.tagId;
     const pageId = Number(params.id);
 
     const data = await client.getList<Post>({
@@ -91,7 +88,7 @@ export const getStaticProps: GetStaticProps<Props, { tagId: string, id: string }
 
     const tag = await client.getListDetail<PostTag>({
         endpoint: 'tag', contentId: tagId
-    })
+    });
 
     return {
         props: {

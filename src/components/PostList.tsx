@@ -1,4 +1,6 @@
-import type { Post } from 'types/blog'
+import type { Post } from 'types/blog';
+import { Datetime } from 'components/Datetime';
+import { TagLink } from 'components/TagLink';
 import {
     Box,
     Heading,
@@ -9,8 +11,6 @@ import {
     Wrap,
     WrapItem
 } from "@chakra-ui/react";
-import { Datetime } from 'components/Datetime'
-import { TagLink } from 'components/TagLink'
 
 type Props = {
     posts: Post[]

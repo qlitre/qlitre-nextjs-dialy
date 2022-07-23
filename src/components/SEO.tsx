@@ -1,6 +1,5 @@
 import { NextSeo } from "next-seo";
 import { config } from 'settings/siteSettings'
-import { MicroCMSImage } from "microcms-js-sdk";
 
 type BaseProps = {
     pagePath: string;
@@ -33,7 +32,7 @@ export const SEO: React.FC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
     thumbnailUrl,
 }) => {
     const siteTitle = config.siteTitle;
-    const ogImageUrl = thumbnailUrl ? thumbnailUrl : config.siteUrl + '/myprof.jpeg'
+    const ogImageUrl = thumbnailUrl ? thumbnailUrl : config.siteUrl + '/myprof.jpeg';
 
     return (
         <NextSeo

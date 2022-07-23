@@ -1,13 +1,11 @@
 import { jstDatetime } from 'utils/utils';
-
 import { Text, Box } from "@chakra-ui/react";
-import { FC } from "react";
 
 type Props = {
     datetime: string;
 }
 
-export const Datetime: FC<Props> = ({ datetime }) => {
+export const Datetime = ({ datetime }: Props) => {
     const formatDate = jstDatetime(datetime, 'YYYY-MM-DD')
     return (
         <Box mt="4">

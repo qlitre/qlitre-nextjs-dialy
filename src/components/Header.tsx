@@ -1,3 +1,4 @@
+import NextLink from "next/link";
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
     Box,
@@ -10,11 +11,9 @@ import {
     Link,
     HStack,
 } from '@chakra-ui/react';
-import NextLink from "next/link";
-import { FC } from 'react';
-import { config } from 'settings/siteSettings'
+import { config } from 'settings/siteSettings';
 
-export const Header: FC = () => {
+export const Header = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
         <Box bg={useColorModeValue('gray.100', 'gray.900')} px={4}>

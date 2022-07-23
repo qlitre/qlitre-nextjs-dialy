@@ -1,15 +1,14 @@
+import type { PostTag } from 'types/blog';
 import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
-import type { PostTag } from 'types/blog'
 
 type Props = {
     tag?: PostTag;
 };
-
 
 export const Breadcrumbs = ({ tag }: Props) => {
     return (
