@@ -1,4 +1,5 @@
 import type { Post } from 'types/blog';
+import { useSecondaryColor } from 'libs/useSecondaryColor';
 import { Datetime } from 'components/Datetime';
 import { TagLink } from 'components/TagLink';
 import {
@@ -10,7 +11,7 @@ import {
     Button,
     Wrap,
     WrapItem
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 type Props = {
     posts: Post[]
@@ -31,7 +32,7 @@ export const PostList = ({ posts }: Props) => {
                     <Link href={`/post/${post.id}`}>
                         <Heading
                             as="h2"
-                            fontSize="3xl"
+                            fontSize="2xl"
                             lineHeight={1.6}
                             marginTop="1"
                             flex={1}
@@ -41,7 +42,7 @@ export const PostList = ({ posts }: Props) => {
                         </Heading>
                     </Link>
                     <Datetime datetime={post.publishedAt} />
-                    <Text mt="1" fontSize="xl" color="gray.500">{post.description}</Text>
+                    <Text mt="1" fontSize="md" color={useSecondaryColor()}>{post.description}</Text>
                     <Link href={`/post/${post.id}`}>
                         <Button
                             colorScheme='teal'

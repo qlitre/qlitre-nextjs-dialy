@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_ID;
 

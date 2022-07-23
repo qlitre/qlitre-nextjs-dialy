@@ -15,7 +15,7 @@ export const TagLink = ({ tag }: Props) => {
         <NextLink key={tag.id} href={`/tags/${tag.id}/page/1`} passHref>
             <Link>
                 <Tag variant='subtle' colorScheme='cyan'>
-                    <TagLabel fontSize="md">{tag.name}</TagLabel>
+                    <TagLabel fontSize="sm">{tag.name}</TagLabel>
                 </Tag>
             </Link>
         </NextLink>

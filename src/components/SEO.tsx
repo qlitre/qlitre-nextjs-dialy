@@ -1,5 +1,5 @@
 import { NextSeo } from "next-seo";
-import { config } from 'settings/siteSettings'
+import { config } from "settings/siteSettings";
 
 type BaseProps = {
     pagePath: string;

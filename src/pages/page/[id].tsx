@@ -1,4 +1,4 @@
-import type { GetStaticPaths, GetStaticProps, } from "next";
+import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { Post } from "types/blog";
 import { client } from 'libs/client';
 import { SEO } from 'components/SEO';
@@ -9,7 +9,7 @@ import { Pagination } from 'components/Pagination';
 import {
     Box,
     Container,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 type Props = {
