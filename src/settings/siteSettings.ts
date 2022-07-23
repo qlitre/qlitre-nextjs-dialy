@@ -5,6 +5,7 @@ export const config = {
         ? 'https://www.qlitre-dialy.ink'
         : 'http://localhost:3000',
     repository: "https://github.com/qlitre/qlitre-nextjs-dialy",
+    buyMeACoffee: "https://www.buymeacoffee.com/qlitre",
     social: {
         twitter: "kuri_tter",
     },

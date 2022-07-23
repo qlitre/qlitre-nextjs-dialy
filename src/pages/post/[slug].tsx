@@ -84,7 +84,7 @@ export default function Article({ post }: Props) {
               Share
             </Button>
             <a
-              href="https://www.buymeacoffee.com/qlitre"
+              href={config.buyMeACoffee}
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -9,3 +9,5 @@ export const jstDatetime = (utcDatetime: string, format: string = 'YYYY-MM-DDTHH
     dayjs.extend(timezone);
     return dayjs.utc(utcDatetime).tz('Asia/Tokyo').format(format);
 };
+
+export const range = (start: number, end: number) => [...Array(end - start + 1)].map((_, i) => start + i);

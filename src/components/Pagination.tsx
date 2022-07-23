@@ -5,11 +5,12 @@ import {
     Text,
 } from "@chakra-ui/react";
 import { BLOG_PER_PAGE } from 'settings/siteSettings'
+import { range } from 'utils/utils'
 
 type Props = {
     totalCount: number;
-    currentPage?: number;
-    tagId?: string;
+    currentPage?: number | undefined;
+    tagId?: string | undefined;
 };
 
 export const Pagination = ({ totalCount, tagId, currentPage = 1 }: Props) => {
@@ -23,8 +24,6 @@ export const Pagination = ({ totalCount, tagId, currentPage = 1 }: Props) => {
         };
         return <Link href={getPath(p)} fontSize="3xl" color="gray.400">{p}</Link>;
     }
-    const range = (start: number, end: number) =>
-        [...Array(end - start + 1)].map((_, i) => start + i)
 
     return (
         <HStack spacing='10' justifyContent="center">

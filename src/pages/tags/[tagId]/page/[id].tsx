@@ -2,16 +2,10 @@ import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { PostTag } from 'types/blog';
 import type { Post } from 'types/blog';
 import { client } from 'libs/client';
-import { Header } from 'components/Header';
+import { Home } from 'components/Home';
 import { SEO } from 'components/SEO';
-import { Breadcrumbs } from 'components/Breadcrumbs';
-import { PostList } from 'components/PostList';
-import { Pagination } from 'components/Pagination';
-import {
-    Box,
-    Container,
-} from '@chakra-ui/react';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { range } from 'utils/utils'
 
 type Props = {
     posts: Post[];
@@ -20,23 +14,17 @@ type Props = {
     tag: PostTag;
 };
 
-
-export default function TagId({ posts, totalCount, tag, currentPage }: Props) {
+export default function BlogTagId({ posts, totalCount, tag, currentPage }: Props) {
     return (
-        <Box>
+        <>
             <SEO
                 type="website"
                 pagePath={`/tags/${tag.id}/page/${currentPage}`}
                 title={`tag: ${tag.name}`}
                 description={`"${tag.name}" でタグ付けされた記事一覧`}
             />
-            <Header />
-            <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-                <Breadcrumbs tag={tag} />
-                <PostList posts={posts} />
-                <Pagination totalCount={totalCount} tagId={tag.id} currentPage={currentPage} />
-            </Container>
-        </Box>
+            <Home posts={posts} totalCount={totalCount} currentPage={currentPage} tag={tag} />
+        </>
     );
 }
 
@@ -55,9 +43,6 @@ const getAllTagPagePaths = async () => {
                     },
                 })
                 .then(({ totalCount }) => {
-                    const range = (start: number, end: number) =>
-                        [...Array(end - start + 1)].map((_, i) => start + i)
-
                     return range(1, Math.ceil(totalCount / BLOG_PER_PAGE)).map(
                         (repo) => `/tags/${item.id}/page/${repo}`
                     )
@@ -81,7 +66,7 @@ export const getStaticProps: GetStaticProps<Props, { tagId: string, id: string }
     const data = await client.getList<Post>({
         endpoint: "post",
         queries: {
-            offset: (Number(pageId) - 1) * BLOG_PER_PAGE,
+            offset: (pageId - 1) * BLOG_PER_PAGE,
             limit: BLOG_PER_PAGE, filters: `tag[contains]${tagId}`
         }
     });

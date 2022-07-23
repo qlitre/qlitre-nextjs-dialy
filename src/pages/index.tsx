@@ -3,14 +3,7 @@ import type { GetStaticProps } from 'next';
 import type { Post } from 'types/blog'
 import { client } from 'libs/client';
 import { SEO } from 'components/SEO';
-import { Header } from 'components/Header';
-import { Breadcrumbs } from 'components/Breadcrumbs';
-import { PostList } from 'components/PostList';
-import { Pagination } from 'components/Pagination';
-import {
-  Box,
-  Container,
-} from "@chakra-ui/react";
+import { Home } from 'components/Home';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 export const getStaticProps: GetStaticProps = async () => {
@@ -28,18 +21,13 @@ type Props = {
   totalCount: number;
 };
 
-const Home: NextPage<Props> = ({ posts, totalCount }) => {
+const HomePage: NextPage<Props> = ({ posts, totalCount }) => {
   return (
-    <Box>
+    <>
       <SEO type="website" pagePath="/" title="Home" description="くりったーの日記サイト" />
-      <Header />
-      <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-        <Breadcrumbs />
-        <PostList posts={posts} />
-        <Pagination totalCount={totalCount} />
-      </Container>
-    </Box>
+      <Home posts={posts} totalCount={totalCount} />
+    </>
   )
 }
 
-export default Home
+export default HomePage
