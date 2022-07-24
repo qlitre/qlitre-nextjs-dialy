@@ -2,14 +2,15 @@ import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { Post } from 'types/blog';
 import { client } from 'libs/client';
 import { useSecondaryColor } from 'libs/useSecondaryColor';
-import { SEO } from 'components/SEO';
-import { Header } from 'components/Header';
-import { MarkdownTemplate } from 'components/MarkdownTemplate';
-import { Footer } from 'components/Footer';
-import { TagLink } from 'components/TagLink';
-import { Datetime } from 'components/Datetime';
-import { TwitterIntentTweet } from 'components/TwitterIntentTweet';
-import { LinkToHome } from 'components/LinkToHome'
+import { SEO } from 'components/common/SEO';
+import { Header } from 'components/homeLayout/Header';
+import { TagLink } from 'components/common/TagLink';
+import { MarkdownTemplate } from 'components/common/MarkdownTemplate';
+import { RepeatContent } from 'components/common/RepeatContent';
+import { Footer } from 'components/homeLayout/Footer';
+import { Datetime } from 'components/common/Datetime';
+import { TwitterIntentTweet } from 'components/common/TwitterIntentTweet';
+import { LinkToHome } from 'components/common/LinkToHome'
 import {
   Box,
   Container,
@@ -38,6 +39,24 @@ type Props = {
 export default function Article({ post }: Props) {
   const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined;
   const secondaryColor = useSecondaryColor();
+  const WithAmazonLinkContents = () => {
+    return (
+      <Box>
+        {post.body && post.body.map((repeater, i) =>
+          <Box key={i} mb="16">
+            <RepeatContent body={repeater} />
+          </Box>
+        )}
+      </Box>
+    )
+  }
+
+  const TextOnlyContents = () => {
+    return (
+      <MarkdownTemplate source={post.text} mb="16" />
+    )
+  }
+
   return (
     <>
       <SEO
@@ -70,7 +89,9 @@ export default function Article({ post }: Props) {
           </Wrap>
         </Stack>
         <Divider marginY="8" />
-        <MarkdownTemplate source={post.text} mb="16" />
+
+        {post.hasAmazonLink ? WithAmazonLinkContents() : TextOnlyContents()}
+
         <Box as="section" marginBottom="16">
           <Flex wrap="wrap" gap="2">
             <Button
@@ -96,7 +117,6 @@ export default function Article({ post }: Props) {
                 htmlHeight="40"
               />
             </a>
-
           </Flex>
         </Box>
         <Center>

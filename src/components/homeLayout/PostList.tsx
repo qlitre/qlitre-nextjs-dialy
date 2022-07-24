@@ -1,7 +1,7 @@
 import type { Post } from 'types/blog';
 import { useSecondaryColor } from 'libs/useSecondaryColor';
-import { Datetime } from 'components/Datetime';
-import { TagLink } from 'components/TagLink';
+import { Datetime } from 'components/common/Datetime';
+import { TagLink } from 'components/common/TagLink';
 import {
     Box,
     Heading,

@@ -6,6 +6,21 @@ export type PostTag = {
     name: string;
 } & MicroCMSListContent
 
+export type RichEditor = {
+    richText: string;
+}
+
+export type AmazonLink = {
+    productName: string;
+    productImage: MicroCMSImage;
+    productLink: string;
+}
+
+export type Body = {
+    fieldId: 'richEditor' | 'amazonLink'
+} & RichEditor & AmazonLink
+
+
 export type Post = {
     title: string;
     thumbnail: MicroCMSImage;
@@ -13,4 +28,6 @@ export type Post = {
     keywords: string;
     tag: PostTag[];
     text: string;
+    hasAmazonLink: boolean;
+    body: Body[]
 } & MicroCMSListContent;

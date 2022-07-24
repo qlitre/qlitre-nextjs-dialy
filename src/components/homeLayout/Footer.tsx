@@ -1,6 +1,4 @@
-import type { ReactNode } from 'react';
 import {
-    Box,
     Container,
     Flex,
     Text,

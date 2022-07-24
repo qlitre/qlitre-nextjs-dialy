@@ -2,7 +2,7 @@ import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { Post } from "types/blog";
 import { client } from 'libs/client';
 import { Home } from 'components/Home'
-import { SEO } from 'components/SEO';
+import { SEO } from 'components/common/SEO';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
 import { range } from 'utils/utils'
 
