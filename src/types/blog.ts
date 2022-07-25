@@ -10,7 +10,7 @@ export type RichEditor = {
     richText: string;
 }
 
-export type AmazonLink = {
+export type AmazonAssociateLink = {
     productName: string;
     productImage: MicroCMSImage;
     productLink: string;
@@ -18,7 +18,7 @@ export type AmazonLink = {
 
 export type Body = {
     fieldId: 'richEditor' | 'amazonLink'
-} & RichEditor & AmazonLink
+} & RichEditor & AmazonAssociateLink
 
 
 export type Post = {
@@ -28,6 +28,6 @@ export type Post = {
     keywords: string;
     tag: PostTag[];
     text: string;
-    hasAmazonLink: boolean;
-    body: Body[]
+    useRepeatedBody: boolean;
+    repeatedBody: Body[];
 } & MicroCMSListContent;

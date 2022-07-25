@@ -26,7 +26,7 @@ const h1 = {
         fontWeight: "600",
         pb: ".3em",
         fontSize: "2em",
-        borderBottom: "1px solid #E7ECF2",
+        _before: { content: "'# '", color: "cyan.700" }
     },
 };
 
@@ -38,7 +38,7 @@ const h2 = {
         fontWeight: "600",
         pb: ".3em",
         fontSize: "1.5em",
-        borderBottom: "1px solid #E7ECF2",
+        _before: { content: "'## '", color: "cyan.700" }
     },
 };
 
@@ -49,6 +49,7 @@ const h3 = {
         lineHeight: "1.25",
         fontWeight: "600",
         fontSize: "1.25em",
+        _before: { content: "'### '", color: "cyan.700" }
     },
 };
 
@@ -137,14 +138,14 @@ const options: HTMLReactParserOptions = {
         if (domNode.type === "tag") {
             if (domNode.name === "h1") {
                 return (
-                    <Heading as="h1" {...h1.props}>
+                    <Heading as="h1" {...h1.props} >
                         {domToReact(domNode.children, options)}
                     </Heading>
                 );
             };
             if (domNode.name === "h2") {
                 return (
-                    <Heading as="h2" {...h2.props}>
+                    <Heading as="h2" {...h2.props} >
                         {domToReact(domNode.children, options)}
                     </Heading>
                 );

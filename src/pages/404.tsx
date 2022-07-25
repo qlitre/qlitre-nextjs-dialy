@@ -1,5 +1,5 @@
-import { NotFound } from 'components/common/NotFound';
-import { SEO } from 'components/common/SEO';
+import { NotFound } from 'components/pages/NotFound';
+import { SEO } from 'components/molecules/SEO';
 
 const Custom404 = () => {
     return (

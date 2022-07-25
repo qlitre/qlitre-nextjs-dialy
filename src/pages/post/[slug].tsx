@@ -2,15 +2,16 @@ import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { Post } from 'types/blog';
 import { client } from 'libs/client';
 import { useSecondaryColor } from 'libs/useSecondaryColor';
-import { SEO } from 'components/common/SEO';
-import { Header } from 'components/homeLayout/Header';
-import { TagLink } from 'components/common/TagLink';
-import { MarkdownTemplate } from 'components/common/MarkdownTemplate';
-import { RepeatContent } from 'components/common/RepeatContent';
-import { Footer } from 'components/homeLayout/Footer';
-import { Datetime } from 'components/common/Datetime';
-import { TwitterIntentTweet } from 'components/common/TwitterIntentTweet';
-import { LinkToHome } from 'components/common/LinkToHome'
+import { SEO } from 'components/molecules/SEO';
+import { Header } from 'components/organisms/Header';
+import { TagLink } from 'components/atoms/TagLink';
+import { MarkdownTemplate } from 'components/organisms/MarkdownTemplate';
+import { RepeatedBody } from 'components/organisms/RepeatedBody';
+import { Footer } from 'components/organisms/Footer';
+import { Datetime } from 'components/atoms/Datetime';
+import { TwitterShare } from 'components/atoms/TwitterShare'
+import { BuyMeACoffeeLink } from 'components/atoms/BuyMeACoffeeLink'
+import { LinkToHome } from 'components/atoms/LinkToHome'
 import {
   Box,
   Container,
@@ -19,18 +20,13 @@ import {
   Stack,
   Wrap,
   WrapItem,
-  Image,
   Flex,
-  Icon,
-  Button,
   Center,
   Text,
   HStack
 } from '@chakra-ui/react';
-import { FaTwitter } from 'react-icons/fa';
 import React from 'react';
 import { jstDatetime } from 'utils/utils';
-import { config } from 'settings/siteSettings'
 
 type Props = {
   post: Post;
@@ -39,24 +35,6 @@ type Props = {
 export default function Article({ post }: Props) {
   const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined;
   const secondaryColor = useSecondaryColor();
-  const WithAmazonLinkContents = () => {
-    return (
-      <Box>
-        {post.body && post.body.map((repeater, i) =>
-          <Box key={i} mb="16">
-            <RepeatContent body={repeater} />
-          </Box>
-        )}
-      </Box>
-    )
-  }
-
-  const TextOnlyContents = () => {
-    return (
-      <MarkdownTemplate source={post.text} mb="16" />
-    )
-  }
-
   return (
     <>
       <SEO
@@ -90,33 +68,12 @@ export default function Article({ post }: Props) {
         </Stack>
         <Divider marginY="8" />
 
-        {post.hasAmazonLink ? WithAmazonLinkContents() : TextOnlyContents()}
+        {post.useRepeatedBody ? <RepeatedBody repeatedBody={post.repeatedBody} /> : <MarkdownTemplate source={post.text} mb="16" />}
 
         <Box as="section" marginBottom="16">
           <Flex wrap="wrap" gap="2">
-            <Button
-              as={TwitterIntentTweet}
-              text={post.title}
-              url={`${config.siteUrl}/post/${post.id}`}
-              hashtags={["qlitredialy"]}
-              via={config.social.twitter}
-              colorScheme="twitter"
-              leftIcon={<Icon as={FaTwitter} />}
-            >
-              Share
-            </Button>
-            <a
-              href={config.buyMeACoffee}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Image
-                src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
-                alt="Buy Me A Coffee"
-                h="10"
-                htmlHeight="40"
-              />
-            </a>
+            <TwitterShare title={post.title} slug={post.id} />
+            <BuyMeACoffeeLink />
           </Flex>
         </Box>
         <Center>

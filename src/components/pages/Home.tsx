@@ -1,10 +1,10 @@
 import type { PostTag } from 'types/blog';
 import type { Post } from 'types/blog';
-import { Header } from 'components/homeLayout/Header';
-import { Breadcrumbs } from 'components/homeLayout/Breadcrumbs';
-import { PostList } from 'components/homeLayout/PostList';
-import { Pagination } from 'components/homeLayout/Pagination';
-import { Footer } from 'components/homeLayout/Footer'
+import { Header } from 'components/organisms/Header';
+import { Breadcrumbs } from 'components/atoms/Breadcrumbs';
+import { PostList } from 'components/organisms/PostList';
+import { Pagination } from 'components/organisms/Pagination';
+import { Footer } from 'components/organisms/Footer'
 import { Container } from "@chakra-ui/react";
 
 

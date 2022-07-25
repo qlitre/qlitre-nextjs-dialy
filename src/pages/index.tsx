@@ -2,8 +2,8 @@ import type { NextPage } from 'next'
 import type { GetStaticProps } from 'next';
 import type { Post } from 'types/blog'
 import { client } from 'libs/client';
-import { SEO } from 'components/common/SEO';
-import { Home } from 'components/Home';
+import { SEO } from 'components/molecules/SEO';
+import { Home } from 'components/pages/Home';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 export const getStaticProps: GetStaticProps = async () => {
