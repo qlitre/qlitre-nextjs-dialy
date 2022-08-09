@@ -13,7 +13,6 @@ import {
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { Product } from "components/atoms/Product";
-import { config } from 'settings/siteSettings';
 
 
 export const About = () => {
@@ -61,7 +60,7 @@ export const About = () => {
                             title="Twitter"
                             as={Link}
                             isExternal
-                            href={config.social.twitter}
+                            href="https://twitter.com/kuri_tter"
                             icon={<Icon as={FaTwitter} fontSize="3xl" />}
                             size="lg"
                             variant="ghost"
