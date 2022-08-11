@@ -116,6 +116,23 @@ const img = {
     }
 };
 
+const iframeWrap = {
+    props: {
+        width: "100%",
+        height: "0",
+        pb: "56.25%",
+        mt: "24px",
+        mb: "16px"
+    }
+}
+
+const iframe = {
+    props: {
+        width: "100%",
+        height: "100%"
+    }
+}
+
 
 const code = {
     props: {
@@ -201,7 +218,16 @@ const options: HTMLReactParserOptions = {
                 return (
                     <Image {...img.props} src={domNode.attribs.src} />
                 );
-            };           
+            };
+            if (domNode.name === 'iframe') {
+                return (
+                    <Box {...iframeWrap.props} position="relative">
+                        <Box as='iframe' {...iframe.props} src={domNode.attribs.src} position="absolute">
+                            {domToReact(domNode.children, options)}
+                        </Box>
+                    </Box>
+                )
+            };
             if (domNode.name === 'code') {
                 // 通常のcodeタグとpre→codeタグを区別する
                 if (domNode.parent.name === 'pre') {
