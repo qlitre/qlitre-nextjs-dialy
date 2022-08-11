@@ -12,8 +12,7 @@ type Props = {
 };
 
 export default function Article({ post, draftKey }: Props) {
-  const thumbnailUrl = post.thumbnail ? post.thumbnail.url : undefined;
-  return (
+  return post ? (
     <>
       <SEO
         type="article"
@@ -22,7 +21,7 @@ export default function Article({ post, draftKey }: Props) {
         tags={post.tag.map((tag) => tag.name)}
         title={post.title}
         description={post.description}
-        thumbnailUrl={thumbnailUrl}
+        thumbnailUrl={post.thumbnail ? post.thumbnail.url : undefined}
       />
       {draftKey && (
         <div>
@@ -31,6 +30,8 @@ export default function Article({ post, draftKey }: Props) {
       )}
       <PostDetailContent post={post} />
     </ >
+  ) : (
+    <div>no content</div>
   )
 }
 
@@ -40,7 +41,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const totalCount = data.totalCount;
   const allData = await client.getList<Post>({ endpoint: "post", queries: { limit: totalCount } });
   const paths = allData.contents.map((content) => `/post/${content.id}`);
-  return { paths, fallback: 'blocking' };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -49,26 +50,26 @@ export const getStaticProps: GetStaticProps = async (context) => {
   if (!params?.slug) {
     throw new Error('Error: ID not found')
   }
+
   const slug = String(params.slug);
   const draftKey = isDraft(previewData)
     ? { draftKey: previewData.draftKey }
     : {}
 
+  try {
+    const data = await client.getListDetail<Post>({
+      endpoint: "post",
+      contentId: slug,
+      queries: draftKey
+    });
 
-  const data = await client.getListDetail<Post>({
-    endpoint: "post",
-    contentId: slug,
-    queries: draftKey
-  });
-
-  if (!data) {
+    return {
+      props: {
+        post: data,
+        ...draftKey,
+      },
+    };
+  } catch (e) {
     return { notFound: true }
   }
-
-  return {
-    props: {
-      post: data,
-      ...draftKey,
-    },
-  };
 };
