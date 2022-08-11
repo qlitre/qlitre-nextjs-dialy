@@ -129,10 +129,9 @@ const iframeWrap = {
 const iframe = {
     props: {
         width: "100%",
-        height: "100%"
+        height: "100%",
     }
 }
-
 
 const code = {
     props: {
@@ -222,7 +221,7 @@ const options: HTMLReactParserOptions = {
             if (domNode.name === 'iframe') {
                 return (
                     <Box {...iframeWrap.props} position="relative">
-                        <Box as='iframe' {...iframe.props} src={domNode.attribs.src} position="absolute">
+                        <Box as='iframe' {...iframe.props} src={domNode.attribs.src} position="absolute" scrolling="no">
                             {domToReact(domNode.children, options)}
                         </Box>
                     </Box>

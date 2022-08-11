@@ -54,19 +54,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
     ? { draftKey: previewData.draftKey }
     : {}
 
-  try {
-    const data = await client.getListDetail<Post>({
-      endpoint: "post",
-      contentId: slug,
-      queries: draftKey
-    });
-    return {
-      props: {
-        post: data,
-        ...draftKey,
-      },
-    };
-  } catch (e) {
+
+  const data = await client.getListDetail<Post>({
+    endpoint: "post",
+    contentId: slug,
+    queries: draftKey
+  });
+
+  if (!data) {
     return { notFound: true }
   }
+
+  return {
+    props: {
+      post: data,
+      ...draftKey,
+    },
+  };
 };
