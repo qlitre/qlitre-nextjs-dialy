@@ -33,7 +33,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps<Props, { id: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async (context) => {
+    const { params } = context
     if (!params) throw new Error("Component file name must has params.");
     const pageId = Number(params.id);
 

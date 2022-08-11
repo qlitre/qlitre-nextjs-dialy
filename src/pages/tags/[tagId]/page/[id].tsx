@@ -58,9 +58,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
     return { paths, fallback: false };
 }
 
-export const getStaticProps: GetStaticProps<Props, { tagId: string, id: string }> = async ({ params }) => {
+export const getStaticProps: GetStaticProps = async (context) => {
+    const { params } = context
     if (!params) throw new Error("Error Tag ID Not Found");
-    const tagId = params.tagId;
+    const tagId = String(params.tagId);
     const pageId = Number(params.id);
 
     const data = await client.getList<Post>({
