@@ -30,7 +30,7 @@ export const AmazonLink = ({ content }: Props) => {
                 </Box>
                 <Spacer />
                 <Box>
-                    <Image maxHeight="150" src={content.productImage.url} />
+                    <Image maxHeight="150" src={content.productImage.url} alt={content.productName} />
                 </Box>
             </HStack>
         </Box>
