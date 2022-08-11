@@ -110,12 +110,12 @@ const a = {
 };
 
 const img = {
-    component: Image,
     props: {
         border: "1px",
         borderColor: "gray.300"
     }
 };
+
 
 const code = {
     props: {
@@ -201,7 +201,7 @@ const options: HTMLReactParserOptions = {
                 return (
                     <Image {...img.props} src={domNode.attribs.src} />
                 );
-            };
+            };           
             if (domNode.name === 'code') {
                 // 通常のcodeタグとpre→codeタグを区別する
                 if (domNode.parent.name === 'pre') {

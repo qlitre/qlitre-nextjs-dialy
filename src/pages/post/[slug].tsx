@@ -45,6 +45,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { params, previewData } = context
+
   if (!params?.slug) {
     throw new Error('Error: ID not found')
   }
@@ -57,9 +58,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     const data = await client.getListDetail<Post>({
       endpoint: "post",
       contentId: slug,
-      queries: {
-        ...draftKey
-      }
+      queries: draftKey
     });
     return {
       props: {

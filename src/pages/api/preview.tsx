@@ -2,8 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next'
 import { client } from 'libs/client'
 
 const preview = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { draftKey, slug } = req.query
-
+    const { draftKey, slug } = req.query    
     if (typeof draftKey !== 'string' || typeof slug !== 'string') {
         res.status(404).end()
         return
@@ -22,7 +21,7 @@ const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     res.setPreviewData({
-        slug: slug,
+        slug: data.id,
         draftKey: req.query.draftKey,
     });
     res.writeHead(307, { Location: `/post/${data.id}` })
