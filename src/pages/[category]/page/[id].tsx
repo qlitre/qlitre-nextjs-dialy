@@ -30,7 +30,7 @@ export default function BlogCategoryId({ posts, categories, totalCount, currentP
     );
 }
 
-const getAllTagPagePaths = async () => {
+const getAllCategoryPagePaths = async () => {
     const resCategory = await client.getList({
         endpoint: 'category',
     })
@@ -56,7 +56,7 @@ const getAllTagPagePaths = async () => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = await getAllTagPagePaths()
+    const paths = await getAllCategoryPagePaths()
     return { paths, fallback: false };
 }
 
