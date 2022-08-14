@@ -1,4 +1,5 @@
 export const BLOG_PER_PAGE = 10;
+
 export const config = {
     siteTitle: "QLITRE DIALY",
     siteUrl: process.env.NODE_ENV === 'production'

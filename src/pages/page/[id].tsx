@@ -2,8 +2,8 @@ import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { Post } from "types/blog";
 import type { PostCategory } from 'types/blog';
 import { client } from 'libs/client';
-import { Home } from 'components/pages/Home'
 import { SEO } from 'components/molecules/SEO';
+import { Home } from 'components/pages/Home'
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
 import { range } from 'utils/utils'
 import { getCategoryContents } from 'libs/getCategoryContents'

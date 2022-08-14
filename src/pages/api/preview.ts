@@ -1,5 +1,5 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { client } from 'libs/client'
+import { NextApiRequest, NextApiResponse } from 'next';
+import { client } from 'libs/client';
 
 const preview = async (req: NextApiRequest, res: NextApiResponse) => {
     const { draftKey, slug } = req.query    

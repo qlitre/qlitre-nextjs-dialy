@@ -1,10 +1,10 @@
+import { useSecondaryColor } from "libs/useSecondaryColor";
 import {
     Container,
     Flex,
     Text,
     Link,
 } from '@chakra-ui/react';
-import { useSecondaryColor } from "libs/useSecondaryColor";
 
 export const Footer = () => {
     return (

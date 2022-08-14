@@ -1,6 +1,6 @@
 import { Center, Container, Heading } from '@chakra-ui/react';
-import { Header } from 'components/organisms/Header';
 import { LinkToHome } from 'components/atoms/LinkToHome';
+import { Header } from 'components/organisms/Header';
 import { Footer } from 'components/organisms/Footer';
 
 export const NotFound = () => {

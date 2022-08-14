@@ -4,7 +4,7 @@ import type { Post } from 'types/blog';
 import { Header } from 'components/organisms/Header';
 import { Breadcrumbs } from 'components/molecules/Breadcrumbs';
 import { CategoryNavigation } from 'components/molecules/CategoryNavigation'
-import { PostList } from 'components/organisms/PostList';
+import { ArticleList } from 'components/organisms/ArticleList';
 import { Pagination } from 'components/organisms/Pagination';
 import { Footer } from 'components/organisms/Footer'
 import { Container, Stack, Spacer } from "@chakra-ui/react";
@@ -42,11 +42,12 @@ export const Home = ({ posts, totalCount, categories, currentPage, category, tag
         <>
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-                <Stack spacing={4}>
+                <Stack spacing={6}>
                     {getBreadcrumbs()}
+                    <Spacer />
                     {getCategoryNavigation()}
                     <Spacer />
-                    <PostList posts={posts} />
+                    <ArticleList posts={posts} />
                     {getPagination()}
                 </Stack>
             </Container>

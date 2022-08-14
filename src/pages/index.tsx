@@ -3,10 +3,10 @@ import type { GetStaticProps } from 'next';
 import type { Post } from 'types/blog';
 import type { PostCategory } from 'types/blog';
 import { client } from 'libs/client';
+import { getCategoryContents } from 'libs/getCategoryContents';
 import { SEO } from 'components/molecules/SEO';
 import { Home } from 'components/pages/Home';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
-import { getCategoryContents } from 'libs/getCategoryContents';
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await client.getList({ endpoint: "post", queries: { limit: BLOG_PER_PAGE } });

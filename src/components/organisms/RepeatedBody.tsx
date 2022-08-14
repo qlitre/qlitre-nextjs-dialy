@@ -1,9 +1,7 @@
 import type { Body } from 'types/blog';
-import { MarkdownTemplate } from 'components/organisms/MarkdownTemplate';
 import { AmazonLink } from 'components/molecules/AmazonLink';
-import {
-    Box,
-} from '@chakra-ui/react';
+import { MarkdownTemplate } from 'components/organisms/MarkdownTemplate';
+import { Box } from '@chakra-ui/react';
 
 type Props = {
     repeatedBody: Body[];

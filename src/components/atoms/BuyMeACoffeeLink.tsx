@@ -1,6 +1,4 @@
-import {
-    Image
-} from '@chakra-ui/react';
+import { Image } from '@chakra-ui/react';
 import { config } from 'settings/siteSettings'
 
 export const BuyMeACoffeeLink = () => {

@@ -1,6 +1,6 @@
+import NextLink from "next/link";
 import type { PostCategory } from "types/blog";
 import { Flex, Link, useColorModeValue } from "@chakra-ui/react";
-import NextLink from "next/link";
 
 type Props = {
     categories: PostCategory[];

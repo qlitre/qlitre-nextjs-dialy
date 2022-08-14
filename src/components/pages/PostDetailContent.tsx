@@ -22,7 +22,6 @@ import {
     Center,
     Text,
     HStack,
-    Spacer
 } from '@chakra-ui/react';
 import React from 'react';
 

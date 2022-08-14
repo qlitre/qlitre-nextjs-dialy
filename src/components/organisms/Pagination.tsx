@@ -4,8 +4,8 @@ import {
     Link,
     Text,
 } from "@chakra-ui/react";
-import { BLOG_PER_PAGE } from 'settings/siteSettings'
-import { range } from 'utils/utils'
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { range } from 'utils/utils';
 
 type Props = {
     totalCount: number;
