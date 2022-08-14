@@ -6,6 +6,8 @@ import {
     BreadcrumbLink,
 } from "@chakra-ui/react";
 import { ChevronRightIcon } from "@chakra-ui/icons";
+import { CategoryLink } from 'components/atoms/CategoryLink';
+import { TagLink } from 'components/atoms/TagLink';
 
 type Props = {
     category?: PostCategory;
@@ -14,18 +16,22 @@ type Props = {
 
 export const Breadcrumbs = ({ category, tag }: Props) => {
     return (
-        <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' fontSize="xl" fontWeight="bold" />} mb="8">
+        <Breadcrumb spacing='8px' separator={<ChevronRightIcon color='gray.500' fontSize="xl" fontWeight="bold" />}>
             <BreadcrumbItem>
-                <BreadcrumbLink href='/' fontSize="2xl" fontWeight="bold" >Home</BreadcrumbLink>
+                <BreadcrumbLink href='/' fontSize="xl" fontWeight="bold" >Home</BreadcrumbLink>
             </BreadcrumbItem>
             {category && (
                 <BreadcrumbItem>
-                    <BreadcrumbLink href={`/${category.id}/page/1`} fontSize="2xl" fontWeight="bold">Category&quot{category.name}&quot</BreadcrumbLink>
+                    <BreadcrumbLink fontSize="md" fontWeight="bold">
+                        <CategoryLink category={category} />
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
             )}
             {tag && (
                 <BreadcrumbItem>
-                    <BreadcrumbLink href={`/tags/${tag.id}/page/1`} fontSize="2xl" fontWeight="bold">Tag &quot{tag.name}&quot</BreadcrumbLink>
+                    <BreadcrumbLink href={`/tags/${tag.id}/page/1`} fontSize="md" fontWeight="bold">
+                        <TagLink tag={tag} />
+                    </BreadcrumbLink>
                 </BreadcrumbItem>
             )}
         </Breadcrumb>

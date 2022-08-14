@@ -42,7 +42,7 @@ export const Home = ({ posts, totalCount, categories, currentPage, category, tag
         <>
             <Header />
             <Container as="main" maxW="container.lg" marginTop="4" marginBottom="16">
-                <Stack spacing={5}>
+                <Stack spacing={4}>
                     {getBreadcrumbs()}
                     {getCategoryNavigation()}
                     <Spacer />
