@@ -1,6 +1,7 @@
 import type { Post } from 'types/blog';
 import { useSecondaryColor } from 'libs/useSecondaryColor';
 import { Datetime } from 'components/atoms/Datetime';
+import { CategoryLink } from 'components/atoms/CategoryLink';
 import { TagLink } from 'components/atoms/TagLink';
 import {
     Box,
@@ -11,6 +12,7 @@ import {
     Button,
     Wrap,
     WrapItem,
+    Spacer
 } from '@chakra-ui/react';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
@@ -24,13 +26,6 @@ export const PostList = ({ posts }: Props) => {
         <>
             {posts.map(post => (
                 <Box key={post.id}>
-                    <Wrap>
-                        {post.tag.map(tag => (
-                            <WrapItem key={tag.id}>
-                                <TagLink tag={tag} />
-                            </WrapItem>
-                        ))}
-                    </Wrap>
                     <Link href={`/post/${post.id}`}>
                         <Heading
                             as="h2"
@@ -45,6 +40,17 @@ export const PostList = ({ posts }: Props) => {
                     </Link>
                     <Datetime datetime={post.publishedAt} />
                     <Text mt="1" fontSize="md" color={secondaryColor}>{post.description}</Text>
+                    <Stack mt="5" mb="5" />
+                    <Wrap>
+                        <WrapItem>
+                            <CategoryLink category={post.category} />
+                        </WrapItem>
+                        {post.tag.map(tag => (
+                            <WrapItem key={tag.id}>
+                                <TagLink tag={tag} />
+                            </WrapItem>
+                        ))}
+                    </Wrap>
                     <Link href={`/post/${post.id}`}>
                         <Button
                             colorScheme='teal'

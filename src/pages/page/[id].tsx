@@ -1,19 +1,22 @@
 import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { Post } from "types/blog";
+import type { PostCategory } from 'types/blog';
 import { client } from 'libs/client';
 import { Home } from 'components/pages/Home'
 import { SEO } from 'components/molecules/SEO';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
 import { range } from 'utils/utils'
+import { getCategoryContents } from 'libs/getCategoryContents'
 
 type Props = {
     posts: Post[];
+    categories: PostCategory[];
     totalCount: number;
     currentPage: number;
 };
 
 
-export default function BlogPageId({ posts, totalCount, currentPage }: Props) {
+export default function BlogPageId({ posts, categories, totalCount, currentPage }: Props) {
     return (
         <>
             <SEO
@@ -22,7 +25,7 @@ export default function BlogPageId({ posts, totalCount, currentPage }: Props) {
                 title={`ページ: ${currentPage}`}
                 description={`${currentPage}ページ目の記事一覧`}
             />
-            <Home posts={posts} totalCount={totalCount} currentPage={currentPage} />
+            <Home posts={posts} categories={categories} totalCount={totalCount} currentPage={currentPage} />
         </>
     );
 }
@@ -46,9 +49,12 @@ export const getStaticProps: GetStaticProps = async (context) => {
         }
     });
 
+    const categories = await getCategoryContents()
+
     return {
         props: {
             posts: data.contents,
+            categories: categories,
             totalCount: data.totalCount,
             currentPage: pageId
         },

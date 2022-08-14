@@ -1,17 +1,21 @@
-import type { NextPage } from 'next'
+import type { NextPage } from 'next';
 import type { GetStaticProps } from 'next';
-import type { Post } from 'types/blog'
+import type { Post } from 'types/blog';
+import type { PostCategory } from 'types/blog';
 import { client } from 'libs/client';
 import { SEO } from 'components/molecules/SEO';
 import { Home } from 'components/pages/Home';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { getCategoryContents } from 'libs/getCategoryContents';
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await client.getList({ endpoint: "post", queries: { limit: BLOG_PER_PAGE } });
+  const categories = await getCategoryContents()
   return {
     props: {
       posts: data.contents,
-      totalCount: data.totalCount
+      totalCount: data.totalCount,
+      categories: categories
     },
   };
 };
@@ -19,13 +23,14 @@ export const getStaticProps: GetStaticProps = async () => {
 type Props = {
   posts: Post[];
   totalCount: number;
+  categories: PostCategory[];
 };
 
-const HomePage: NextPage<Props> = ({ posts, totalCount }) => {
+const HomePage: NextPage<Props> = ({ posts, totalCount, categories }) => {
   return (
     <>
       <SEO type="website" pagePath="/" title="Home" description="くりったーの日記サイト" />
-      <Home posts={posts} totalCount={totalCount} />
+      <Home posts={posts} totalCount={totalCount} categories={categories} />
     </>
   )
 }

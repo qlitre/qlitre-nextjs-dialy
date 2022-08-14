@@ -1,6 +1,5 @@
 import type { GetStaticPaths, GetStaticProps, } from 'next';
 import type { PostCategory } from 'types/blog';
-import type { PostTag } from 'types/blog';
 import type { Post } from 'types/blog';
 import { client } from 'libs/client';
 import { Home } from 'components/pages/Home';
@@ -14,40 +13,40 @@ type Props = {
     categories: PostCategory[];
     totalCount: number;
     currentPage: number;
-    tag: PostTag;
+    category: PostCategory;
 };
 
-export default function BlogTagId({ posts, categories, totalCount, tag, currentPage }: Props) {
+export default function BlogCategoryId({ posts, categories, totalCount, currentPage, category }: Props) {
     return (
         <>
             <SEO
                 type="website"
-                pagePath={`/tags/${tag.id}/page/${currentPage}`}
-                title={`tag: ${tag.name}`}
-                description={`"${tag.name}" でタグ付けされた記事一覧`}
+                pagePath={`/categories/${category.id}/page/${currentPage}`}
+                title={`category: ${category.name}`}
+                description={`カテゴリー"${category.name}" の記事一覧`}
             />
-            <Home posts={posts} totalCount={totalCount} categories={categories} currentPage={currentPage} tag={tag} />
+            <Home posts={posts} totalCount={totalCount} categories={categories} currentPage={currentPage} category={category} />
         </>
     );
 }
 
 const getAllTagPagePaths = async () => {
-    const resTag = await client.getList({
-        endpoint: 'tag',
+    const resCategory = await client.getList({
+        endpoint: 'category',
     })
 
     const paths: string[][] = await Promise.all(
-        resTag.contents.map((item: PostTag) => {
+        resCategory.contents.map((item: PostCategory) => {
             const result = client
                 .getList<Post>({
                     endpoint: 'post',
                     queries: {
-                        filters: `tag[contains]${item.id}`,
+                        filters: `category[equals]${item.id}`,
                     },
                 })
                 .then(({ totalCount }) => {
                     return range(1, Math.ceil(totalCount / BLOG_PER_PAGE)).map(
-                        (repo) => `/tags/${item.id}/page/${repo}`
+                        (repo) => `/${item.id}/page/${repo}`
                     )
                 })
             return result
@@ -64,21 +63,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
     const { params } = context
     if (!params) throw new Error("Error Tag ID Not Found");
-    const tagId = String(params.tagId);
+    const categoryId = String(params.category);
     const pageId = Number(params.id);
 
     const data = await client.getList<Post>({
         endpoint: "post",
         queries: {
             offset: (pageId - 1) * BLOG_PER_PAGE,
-            limit: BLOG_PER_PAGE, filters: `tag[contains]${tagId}`
+            limit: BLOG_PER_PAGE, filters: `category[equals]${categoryId}`
         }
     });
 
     const categories = await getCategoryContents()
 
-    const tag = await client.getListDetail<PostTag>({
-        endpoint: 'tag', contentId: tagId
+    const category = await client.getListDetail<PostCategory>({
+        endpoint: 'category', contentId: categoryId
     });
 
     return {
@@ -87,7 +86,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
             categories: categories,
             totalCount: data.totalCount,
             currentPage: pageId,
-            tag: tag
+            category: category
         },
     };
 };

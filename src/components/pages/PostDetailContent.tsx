@@ -1,6 +1,7 @@
 import type { Post } from 'types/blog';
 import { useSecondaryColor } from 'libs/useSecondaryColor';
 import { Header } from 'components/organisms/Header';
+import { CategoryLink } from 'components/atoms/CategoryLink';
 import { TagLink } from 'components/atoms/TagLink';
 import { MarkdownTemplate } from 'components/organisms/MarkdownTemplate';
 import { RepeatedBody } from 'components/organisms/RepeatedBody';
@@ -20,7 +21,8 @@ import {
     Flex,
     Center,
     Text,
-    HStack
+    HStack,
+    Spacer
 } from '@chakra-ui/react';
 import React from 'react';
 
@@ -34,24 +36,29 @@ export const PostDetailContent = ({ post }: Props) => {
         <>
             <Header />
             <Container as="main" maxW="container.md" marginTop="4" marginBottom="16">
-                <Stack spacing="6">
-                    <Heading as="h1" fontSize="4xl" lineHeight={1.6}>
-                        {post.title}
-                    </Heading>
-                    <HStack spacing="1">
-                        <Text as="p" fontSize="sm" color={secondaryColor}>
-                            公開日 :
-                        </Text>
-                        <Datetime datetime={post.publishedAt} />
-                    </HStack>
-                    <Wrap>
-                        {post.tag.map(tag => (
-                            <WrapItem key={tag.id}>
-                                <TagLink tag={tag} />
+                <Box>
+                    <Stack spacing={4}>
+                        <Heading as="h1" fontSize="3xl" lineHeight={1.6}>
+                            {post.title}
+                        </Heading>
+                        <HStack spacing="1">
+                            <Text as="p" fontSize="sm" color={secondaryColor}>
+                                公開日 :
+                            </Text>
+                            <Datetime datetime={post.publishedAt} />
+                        </HStack>
+                        <Wrap>
+                            <WrapItem>
+                                <CategoryLink category={post.category} />
                             </WrapItem>
-                        ))}
-                    </Wrap>
-                </Stack>
+                            {post.tag.map(tag => (
+                                <WrapItem key={tag.id}>
+                                    <TagLink tag={tag} />
+                                </WrapItem>
+                            ))}
+                        </Wrap>
+                    </Stack>
+                </Box>
                 <Divider marginY="8" />
 
                 {post.useRepeatedBody ? <RepeatedBody repeatedBody={post.repeatedBody} /> : <MarkdownTemplate source={post.text} mb="16" />}

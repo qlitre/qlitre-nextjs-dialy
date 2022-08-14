@@ -10,11 +10,13 @@ import { range } from 'utils/utils'
 type Props = {
     totalCount: number;
     currentPage?: number;
+    categoryId?: string;
     tagId?: string;
 };
 
-export const Pagination = ({ totalCount, tagId, currentPage = 1 }: Props) => {
+export const Pagination = ({ totalCount, categoryId, tagId, currentPage = 1 }: Props) => {
     const getPath = (p: number) => {
+        if (categoryId) return `/${categoryId}/page/${p}`
         if (tagId) return `/tags/${tagId}/page/${p}`;
         return `/page/${p}`;
     }

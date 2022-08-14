@@ -6,6 +6,10 @@ export type PostTag = {
     name: string;
 } & MicroCMSListContent
 
+export type PostCategory = {
+    name: string;
+} & MicroCMSListContent
+
 export type RichEditor = {
     richText: string;
 }
@@ -26,6 +30,7 @@ export type Post = {
     thumbnail: MicroCMSImage;
     description: string;
     keywords: string;
+    category: PostCategory;
     tag: PostTag[];
     text: string;
     useRepeatedBody: boolean;
