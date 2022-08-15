@@ -1,6 +1,6 @@
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import { ChakraProvider, SlideFade } from '@chakra-ui/react';
+import { ChakraProvider } from '@chakra-ui/react';
 import { useGoogleAnalytics } from "libs/gtag";
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -8,9 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
     <ChakraProvider>
-      <SlideFade in={true}>
-        <Component {...pageProps} />
-      </SlideFade>
+      <Component {...pageProps} />
     </ChakraProvider>
   )
 }
