@@ -5,7 +5,6 @@ import { Header } from 'components/organisms/Header';
 import { About } from 'components/organisms/About';
 import { Footer } from 'components/organisms/Footer';
 
-
 export default function AboutPage() {
     return (
         <>

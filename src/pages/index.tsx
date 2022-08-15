@@ -7,6 +7,7 @@ import { getCategoryContents } from 'libs/getCategoryContents';
 import { SEO } from 'components/molecules/SEO';
 import { Home } from 'components/pages/Home';
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { config } from 'settings/siteSettings';
 
 export const getStaticProps: GetStaticProps = async () => {
   const data = await client.getList({ endpoint: "post", queries: { limit: BLOG_PER_PAGE } });
@@ -29,7 +30,8 @@ type Props = {
 const HomePage: NextPage<Props> = ({ posts, totalCount, categories }) => {
   return (
     <>
-      <SEO type="website" pagePath="/" title="Home" description="くりったーの日記サイト" />
+      <SEO type="website" pagePath="/" title="Home"
+        description={config.siteDescription} />
       <Home posts={posts} totalCount={totalCount} categories={categories} />
     </>
   )

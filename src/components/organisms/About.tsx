@@ -13,6 +13,7 @@ import {
 } from "@chakra-ui/react";
 import { FaGithub, FaTwitter } from "react-icons/fa";
 import { Product } from "components/atoms/Product";
+import { config } from 'settings/siteSettings'
 
 
 export const About = () => {
@@ -49,7 +50,7 @@ export const About = () => {
                         title="GitHub"
                         as={Link}
                         isExternal
-                        href="https://github.com/qlitre"
+                        href={config.github}
                         icon={<Icon as={FaGithub} fontSize="3xl" />}
                         size="lg"
                         variant="ghost"
@@ -59,7 +60,7 @@ export const About = () => {
                         title="Twitter"
                         as={Link}
                         isExternal
-                        href="https://twitter.com/kuri_tter"
+                        href={config.twitterTop}
                         icon={<Icon as={FaTwitter} fontSize="3xl" />}
                         size="lg"
                         variant="ghost"
@@ -67,14 +68,14 @@ export const About = () => {
                     />
                 </HStack>
                 <Heading as="h1" fontSize="2xl" marginTop="4">
-                    このブログについて
+                    このサイトについて
                 </Heading>
                 <Text marginTop="2" fontSize="sm" color="gray.500" lineHeight="taller">
-                    Next.js + microCMS + Chakra UIで構成。<br />
+                    Next.js + microCMS + Chakra UIで自作した日記サイトです。<br />
                     日常のことを書いています。<br />
-                    プログラミングブログも別でやっています。<br />
+                    別でプログラミングブログもやっています。<br />
                 </Text>
-                <Spacer mt="4" />
+                <Spacer mt="16" />
                 <Product href='https://qlitre-weblog.com/'
                     name='qlitre-weblog' description='プログラミングブログ。Pythonの記事が中心です。' />
             </Container>

@@ -5,6 +5,7 @@ type BaseProps = {
     pagePath: string;
     title?: string;
     description?: string;
+    keyword?: string;
     noindex?: boolean;
     thumbnailUrl?: string;
 };
@@ -39,11 +40,13 @@ export const SEO: React.FC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
             title={title}
             titleTemplate={`%s | ${siteTitle}`}
             defaultTitle={siteTitle}
+            description={description}
+            canonical={config.siteUrl + pagePath}
             noindex={noindex}
             twitter={{
                 cardType: "summary_large_image",
-                site: `@${config.social.twitter}`,
-                handle: `@${config.social.twitter}`,
+                site: `@${config.twitterAccount}`,
+                handle: `@${config.twitterAccount}`,
             }}
             openGraph={{
                 type: type,
@@ -51,7 +54,6 @@ export const SEO: React.FC<BaseProps & (ForWebsiteProps | ForArticleProps)> = ({
                 title: title,
                 description: description,
                 site_name: siteTitle,
-
                 images: [
                     {
                         url: ogImageUrl,

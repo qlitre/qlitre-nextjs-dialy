@@ -38,7 +38,8 @@ type ChildProps = {
 const NavigationLink = ({ href, children, categoryId, activeCategoryId }: ChildProps) => {
     const isActive = categoryId === activeCategoryId;
     const nonActiveFontColor = useColorModeValue("blackAlpha.500", "whiteAlpha.600");
-    const activeBorderColor = useColorModeValue("gray.800", "gray.300");
+    const activeFontColor = useColorModeValue("teal.400", "teal.300");
+    const activeBorderColor = useColorModeValue("teal.400", "teal.300");
 
     return (
         <NextLink href={href} passHref>
@@ -50,9 +51,9 @@ const NavigationLink = ({ href, children, categoryId, activeCategoryId }: ChildP
                 height="12"
                 py="2"
                 px="4"
-                color={isActive ? undefined : nonActiveFontColor}
+                color={isActive ? activeFontColor : nonActiveFontColor}
                 marginBottom="-2px"
-                borderBottomWidth="1px"
+                borderBottomWidth="2px"
                 borderBottomColor={isActive ? activeBorderColor : "transparent"}
                 _hover={{ bgColor: useColorModeValue("blackAlpha.100", "whiteAlpha.200") }}>
                 {children}
