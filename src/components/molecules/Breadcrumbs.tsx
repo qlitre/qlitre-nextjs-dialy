@@ -22,16 +22,12 @@ export const Breadcrumbs = ({ category, tag }: Props) => {
             </BreadcrumbItem>
             {category && (
                 <BreadcrumbItem>
-                    <BreadcrumbLink fontSize="md" fontWeight="bold">
-                        <CategoryLink category={category} />
-                    </BreadcrumbLink>
+                    <CategoryLink category={category} />
                 </BreadcrumbItem>
             )}
             {tag && (
                 <BreadcrumbItem>
-                    <BreadcrumbLink href={`/tags/${tag.id}/page/1`} fontSize="md" fontWeight="bold">
-                        <TagLink tag={tag} />
-                    </BreadcrumbLink>
+                    <TagLink tag={tag} />
                 </BreadcrumbItem>
             )}
         </Breadcrumb>

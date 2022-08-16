@@ -27,7 +27,7 @@ export const Home = ({ posts, totalCount, categories, currentPage, category, tag
     }
 
     const getPagination = () => {
-        if (category) return <Pagination totalCount={totalCount} currentPage={currentPage} tagId={category.id} />
+        if (category) return <Pagination totalCount={totalCount} currentPage={currentPage} categoryId={category.id} />
         if (tag) return <Pagination totalCount={totalCount} currentPage={currentPage} tagId={tag.id} />
         if (currentPage) return <Pagination totalCount={totalCount} currentPage={currentPage} />
         return <Pagination totalCount={totalCount} />
