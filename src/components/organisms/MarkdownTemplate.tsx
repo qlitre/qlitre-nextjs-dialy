@@ -14,9 +14,12 @@ import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
 import 'highlight.js/styles/hybrid.css';
 
+
+
 type MarkdownTemplateProps = {
     source: string;
 } & BoxProps;
+
 
 const h1 = {
     props: {
@@ -133,6 +136,18 @@ const iframe = {
     }
 }
 
+const twitterTweet = {
+    props: {
+        color: "gray.500",
+        my: "1em",
+        padding: "1em",
+        border: '1px',
+        borderColor: 'gray.500',
+        fontSize: "18px",
+        lineHeight: "1.8",
+    }
+}
+
 const code = {
     props: {
         fontSize: 'md',
@@ -200,6 +215,13 @@ const options: HTMLReactParserOptions = {
                 );
             };
             if (domNode.name === 'blockquote') {
+                if (domNode.attribs.class == 'twitter-tweet') {
+                    return (
+                        <Box as="blockquote" {...twitterTweet.props}>
+                            {domToReact(domNode.children, options)}
+                        </Box>
+                    )
+                }
                 return (
                     <Box as="blockquote" {...blockquote.props}>
                         {domToReact(domNode.children, options)}
