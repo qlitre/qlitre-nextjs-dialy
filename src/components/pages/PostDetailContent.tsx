@@ -9,7 +9,7 @@ import { LinkToHome } from 'components/atoms/LinkToHome'
 import { TwitterShare } from 'components/atoms/TwitterShare'
 import { MarkdownTemplate } from 'components/organisms/MarkdownTemplate';
 import { RepeatedBody } from 'components/organisms/RepeatedBody';
-import { AdSense } from 'components/organisms/Adsense';
+import { AdSense } from 'components/organisms/AdSense';
 import { Footer } from 'components/organisms/Footer';
 import {
     Box,
