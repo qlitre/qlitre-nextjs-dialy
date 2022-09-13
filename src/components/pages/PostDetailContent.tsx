@@ -9,6 +9,7 @@ import { LinkToHome } from 'components/atoms/LinkToHome'
 import { TwitterShare } from 'components/atoms/TwitterShare'
 import { MarkdownTemplate } from 'components/organisms/MarkdownTemplate';
 import { RepeatedBody } from 'components/organisms/RepeatedBody';
+import { AdSense } from 'components/organisms/Adsense';
 import { Footer } from 'components/organisms/Footer';
 import {
     Box,
@@ -59,9 +60,12 @@ export const PostDetailContent = ({ post }: Props) => {
                     </Stack>
                 </Box>
                 <Divider marginY="8" />
-
-                {post.useRepeatedBody ? <RepeatedBody repeatedBody={post.repeatedBody} /> : <MarkdownTemplate source={post.text} mb="16" />}
-
+                <Box as="section" marginBottom="16">
+                    {post.useRepeatedBody ? <RepeatedBody repeatedBody={post.repeatedBody} /> : <MarkdownTemplate source={post.text} mb="16" />}
+                </Box>
+                <Box as="section" marginBottom="16">
+                    <AdSense />
+                </Box>
                 <Box as="section" marginBottom="16">
                     <Flex wrap="wrap" gap="2">
                         <TwitterShare title={post.title} slug={post.id} />
