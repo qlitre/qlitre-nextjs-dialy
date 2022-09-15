@@ -8,12 +8,12 @@ import {
     ListItem,
     Link,
     Image,
-    Code as ChakraCode
+    Code as ChakraCode,
 } from '@chakra-ui/react';
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 import 'highlight.js/styles/hybrid.css';
-
 
 
 type MarkdownTemplateProps = {
@@ -136,17 +136,6 @@ const iframe = {
     }
 }
 
-const twitterTweet = {
-    props: {
-        color: "gray.500",
-        my: "1em",
-        padding: "1em",
-        border: '1px',
-        borderColor: 'gray.500',
-        fontSize: "18px",
-        lineHeight: "1.8",
-    }
-}
 
 const code = {
     props: {
@@ -216,9 +205,14 @@ const options: HTMLReactParserOptions = {
             };
             if (domNode.name === 'blockquote') {
                 if (domNode.attribs.class == 'twitter-tweet') {
+                    // microCMSの変換htmlからtwitterURLのIDを取り出す。
+                    // todo:もっと良いやり方があるはず
+                    const twitterHref = domNode.children[2].attribs.href
+                    const arr = twitterHref.split('/')
+                    const tweetId = arr[arr.length - 1].split('?')[0]
                     return (
-                        <Box as="blockquote" {...twitterTweet.props}>
-                            {domToReact(domNode.children, options)}
+                        <Box my={6}>
+                            <TwitterTweetEmbed tweetId={tweetId} />
                         </Box>
                     )
                 }
