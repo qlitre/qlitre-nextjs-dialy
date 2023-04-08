@@ -32,7 +32,7 @@ const HomePage: NextPage<Props> = ({ posts, totalCount, categories }) => {
     <>
       <SEO type="website" pagePath="/" title="Home"
         description={config.siteDescription} />
-      <Home posts={posts} totalCount={totalCount} categories={categories} />
+      <Home posts={posts} totalCount={totalCount} categories={categories} currentPage={1} />
     </>
   )
 }

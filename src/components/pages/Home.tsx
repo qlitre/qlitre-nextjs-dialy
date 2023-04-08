@@ -14,7 +14,7 @@ type Props = {
     posts: Post[];
     totalCount: number;
     categories: PostCategory[];
-    currentPage?: number
+    currentPage: number
     category?: PostCategory;
     tag?: PostTag;
 };
