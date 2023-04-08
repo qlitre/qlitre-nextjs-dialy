@@ -30,14 +30,14 @@ export const Home = ({ posts, totalCount, categories, currentPage, category, tag
         if (category) return <Pagination totalCount={totalCount} currentPage={currentPage} categoryId={category.id} />
         if (tag) return <Pagination totalCount={totalCount} currentPage={currentPage} tagId={tag.id} />
         if (currentPage) return <Pagination totalCount={totalCount} currentPage={currentPage} />
-        return <Pagination totalCount={totalCount} />
+        return <Pagination totalCount={totalCount} currentPage={currentPage} />
     };
 
     const getCategoryNavigation = () => {
         if (category) return <CategoryNavigation categories={categories} activeCategoryId={category.id} />
         return <CategoryNavigation categories={categories} />
     }
-
+    
     return (
         <>
             <Header />
