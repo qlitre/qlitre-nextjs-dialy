@@ -47,7 +47,7 @@ export const Pagination = ({ totalCount, categoryId, tagId, currentPage = 1 }: P
         pager.push(i)
     }
     return (
-        <HStack spacing='8' justifyContent="center">
+        <HStack spacing='6' justifyContent="center">
             {currentPage >= 2 && (
                 <Link href={getPath(currentPage - 1)} fontSize="3xl">
                     <ChevronLeftIcon />
