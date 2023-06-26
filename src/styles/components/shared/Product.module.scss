@@ -1,0 +1,40 @@
+.product {
+    display: flex;
+    gap: 1rem;
+    border: var(--border-1);
+    border-color: var(--c-teal-400);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+}
+
+.content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.title {
+    font-weight: bold;
+
+    &:hover {
+        opacity: .5;
+    }
+
+}
+
+.description {
+    font-size: 0.875rem;
+    color: gray;
+}
+
+.link {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.25rem;
+    color: teal;
+    &:hover {
+        opacity: .5;
+    }
+}

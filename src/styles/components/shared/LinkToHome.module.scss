@@ -1,0 +1,10 @@
+.linkToHome {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+    transition: color 0.2s, box-shadow 0.2s;
+    margin: 0 auto;
+    &:hover {
+      color: var(--c-teal-400);
+    }
+  }
