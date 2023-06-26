@@ -1,0 +1,38 @@
+@use "styles/system.scss" as *;
+
+
+.paginationLinkContainer {
+    @include hStack;
+    @include wrapItems;
+    @include center;
+    align-items: baseline;
+    gap: var(--spacing-8);
+}
+
+.icon {
+    width: var(--size-4);
+    height: var(--size-4);
+    fill: var(--c-gray-400);
+    font-size: var(--font-size-2xl);
+    stroke-width: 5;
+}
+
+.paginationLink {
+    display: block;
+    font-size: var(--font-size-2xl);
+    color: var(--c-gray-400);
+}
+
+.paginationLinkCurrent {
+    display: block;
+    font-size: var(--font-size-2xl);
+    color: var(--c-white-alpha-900);
+    border-radius: var(--radius-md);
+    background: var(--c-teal-400);
+    padding: 0 var(--spacing-2);
+}
+
+.paginationLinkNone {
+    font-size: var(--font-size-xl);
+    color: var(--c-gray-400);
+}

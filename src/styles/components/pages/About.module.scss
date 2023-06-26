@@ -1,0 +1,67 @@
+@use "styles/system.scss" as *;
+
+.main {
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+.flex {
+    justify-content: center;
+    padding-top: 2rem;
+    background: linear-gradient(to bottom right, var(--c-cyan-400), var(--c-teal-400));
+    margin-top: 20px;
+    text-align: center;
+}
+
+
+.avatar {
+    width: 160px;
+    height: 160px;
+    transform: translateY(50%);
+    object-fit: cover;
+    border-radius: 50%;
+    text-align: center;
+
+}
+
+.container {
+    max-width: 520px;
+    margin-top: var(--spacing-24);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--spacing-4);
+    padding-right: var(--spacing-4);
+}
+
+.heading {
+    margin-top: var(--spacing-8);
+    font-size: var(--font-size-lg);
+}
+
+.description {
+    margin-top: 1em;
+    font-size: var(--font-size-md);
+    color: gray;
+    line-height: 1.5;
+}
+
+.icons {
+    margin-top: 2em;
+    display: flex;
+    font-size: var(--font-size-xl);
+}
+
+.icon,
+.twitterIcon {
+    margin-right: var(--spacing-8);
+    color: black;
+    text-decoration: none;
+}
+
+.twitterIcon {
+    color: var(--c-twitter-600);
+}
+
+.spacer {
+    margin-top: 2em;
+}
