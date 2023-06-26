@@ -1,4 +1,4 @@
-import styles from 'styles/components/Shared/LineDivider.module.scss';
+import styles from 'styles/components/shared/LineDivider.module.scss';
 
 export const LineDivider: React.FC = () => {
     return <div className={styles.divider} />;

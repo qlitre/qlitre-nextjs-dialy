@@ -1,4 +1,4 @@
-import styles from 'styles/components/Shared/TagInline.module.scss';
+import styles from 'styles/components/shared/TagInline.module.scss';
 import { PostCategory, Tag } from "types/blog";
 import { CategoryLabel } from "components/shared/CategoryLabel";
 import { TagLabel } from "components/shared/TagLabel";
