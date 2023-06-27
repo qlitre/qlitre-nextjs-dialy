@@ -1,34 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Next13 + microCMSの日記サイトです。
 
-## Getting Started
+[https://www.qlitre-dialy.ink/](https://www.qlitre-dialy.ink/)
 
-First, run the development server:
+## microCMS APIスキーマ
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### category
+endpoint:`category`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| フィールド ID | 表示名       | 種類                        |
+| ------------- | ---------- | --------------------------- |
+| name         | カテゴリ名   | テキストフィールド          |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### tag
+endpoint:`tag`
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+| フィールド ID | 表示名     | 種類                        |
+| ------------- | ---------- | --------------------------- |
+| name         | タグ名   | テキストフィールド          |
 
-## Learn More
+### カスタムフィールド
+フィールドID:`richEditor`
 
-To learn more about Next.js, take a look at the following resources:
+| フィールド ID | 表示名     | 種類                        |
+| ------------- | ---------- | --------------------------- |
+| richText      | リッチエディタ | リッチエディタ |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+フィールドID:`amazonLink`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+| フィールド ID | 表示名            | 種類                         |
+| ------------- | ----------       | --------------------------- |
+| productName         | タイトル   | テキストフィールド            |
+| productImage       | イメージ   | 画像                    |
+| productLink         | リンク   | テキストエリア           |
 
-## Deploy on Vercel
+### post
+endpoint:`post`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+| フィールド ID | 表示名     | 種類                        |
+| ------------- | ---------- | ---------------------------|
+| title         | タイトル   | テキストフィールド          |
+| thumbnail       | サムネイル   | 画像                    |
+| description         | 詳細   | テキストエリア          |
+| keywords         | キーワード   | テキストフィールド　　|
+| category      | カテゴリ | コンテンツ参照 - カテゴリー |
+| tag           | タグ       | 複数コンテンツ参照 - タグ   |
+| toc_visible   | 目次       | 真偽値                      |
+| text          | 本文       | リッチエディタ              |
+| useRepeatedBody   | リピートコンテンツを使うかどうか       | 真偽値 |
+| repeatedBody | 繰り返し本文   | 繰り返し - カスタムフィールド |
