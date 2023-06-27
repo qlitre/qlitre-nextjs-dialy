@@ -1,8 +1,8 @@
 import { Suspense } from 'react';
+import { FaTwitter } from "react-icons/fa";
 import type { Post } from 'types/blog';
-import { PageTitle } from 'components/shared/PageTitle';
-import { config } from 'settings/siteSettings';
 import { jstDatetime } from 'libs/jstDatetime';
+import { PageTitle } from 'components/shared/PageTitle';
 import { RepeatedBody } from 'components/shared/RepeatedBody';
 import { Container } from 'components/shared/Container';
 import { TagInline } from 'components/shared/TagInline';
@@ -10,8 +10,9 @@ import { GoogleAdSense } from 'components/shared/GoogleAdSense';
 import { LineDivider } from 'components/shared/LineDivider';
 import { LinkToHome } from 'components/shared/LinkToHome'
 import { MarkdownTemplate } from 'components/shared/MarkdownTemplate';
-import { FaTwitter } from "react-icons/fa";
 import { TwitterShare } from 'components/shared/TwitterShare';
+import { config } from 'settings/siteSettings';
+
 import styles from 'styles/components/pages/PostDetail.module.scss';
 
 type Props = {

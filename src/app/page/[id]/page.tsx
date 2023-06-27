@@ -1,10 +1,9 @@
+import { Metadata } from "next";
 import { getPostList } from 'libs/getPostList';
+import { getCategoryList } from 'libs/getCategoryList';
 import { getMetadataWebsite } from 'libs/getMetadataWebsite';
 import { HomePage } from 'components/pages/HomePage'
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
-import { getCategoryList } from 'libs/getCategoryList';
-import { config } from 'settings/siteSettings';
-import { Metadata } from "next";
 
 
 type Params = {

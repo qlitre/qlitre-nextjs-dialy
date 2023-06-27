@@ -1,5 +1,4 @@
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
-import Image from "next/image"
 import highlight from 'highlight.js';
 //import { TwitterTweetEmbed } from 'react-twitter-embed';
 import 'highlight.js/styles/hybrid.css';

@@ -1,7 +1,7 @@
-import { getAllContents } from "libs/getAllContents";
+import { getAllPostsContents } from "libs/getAllPostsContents";
 
 export const getReferencedTagCount = async () => {
-    const allContents = await getAllContents();
+    const allContents = await getAllPostsContents();
     const tagCount: Record<string, number> = {};
     for (const post of allContents) {
         for (const tag of post.tag) {

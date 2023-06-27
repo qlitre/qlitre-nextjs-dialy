@@ -71,12 +71,6 @@
   min-width: var(--size-48);
   transform-origin: top right;
   animation: uncollapse 0.2s forwards;
-
-  @include isDarkMode {
-    background: var(--c-gray-700);
-    border-color: var(--c-white-alpha-300);
-    box-shadow: var(--shadow-dark-lg);
-  }
 }
 
 .collapsedNavigationLink {
@@ -90,15 +84,5 @@
 
   &:hover {
     background-color: var(--c-gray-100);
-  }
-
-  @include isDarkMode {
-    &:focus {
-      background-color: var(--c-white-alpha-100);
-    }
-
-    &:hover {
-      background-color: var(--c-white-alpha-100);
-    }
   }
 }

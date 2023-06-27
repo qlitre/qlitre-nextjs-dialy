@@ -7,9 +7,6 @@ import { ArticleList } from 'components/shared/ArticleList';
 import { Pagination } from 'components/shared/Pagination';
 import { Container } from 'components/shared/Container';
 
-import styles from 'styles/components/pages/HomePage.module.scss'
-
-
 type Props = {
     posts: Post[];
     totalCount: number;

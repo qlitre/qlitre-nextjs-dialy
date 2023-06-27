@@ -1,7 +1,7 @@
-import { getAllContents } from "libs/getAllContents";
+import { getAllPostsContents } from "libs/getAllPostsContents";
 
 export const getReferencedCategoryCount = async () => {
-    const allContents = await getAllContents();
+    const allContents = await getAllPostsContents();
     const categoryCount: Record<string, number> = {};
     for (const post of allContents) {
         if (post.category) {

@@ -1,20 +1,19 @@
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { getPostDetail } from "libs/getPostDetail";
-import { getPostList } from "libs/getPostList";
-import { PostDetail } from "components/pages/PostDetail";
+import { getAllPostsContents } from "libs/getAllPostsContents";
 import { getMetadataArticle } from "libs/getMetadataArticle";
 import { getMetadataWebsite } from "libs/getMetadataWebsite";
 import { jstDatetime } from "libs/jstDatetime";
-import { Metadata } from "next";
+import { PostDetail } from "components/pages/PostDetail";
 
 type Params = {
     slug: string;
 }
 
 export async function generateStaticParams() {
-    const { contents } = await getPostList();
-
-    const paths = contents.map((post) => {
+    const allPosts = await getAllPostsContents();
+    const paths = allPosts.map((post) => {
         return {
             postId: post.id,
         };

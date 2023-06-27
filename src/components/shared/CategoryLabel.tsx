@@ -1,5 +1,5 @@
-import type { PostCategory } from "types/blog";
 import NextLink from "next/link";
+import type { PostCategory } from "types/blog";
 
 import styles from "styles/components/shared/CategoryLabel.module.scss";
 

@@ -1,6 +1,6 @@
-import type { Tag } from "types/blog";
 import NextLink from "next/link";
 import { AiFillTag } from "react-icons/ai";
+import type { Tag } from "types/blog";
 import styles from "styles/components/shared/TagLabel.module.scss";
 
 

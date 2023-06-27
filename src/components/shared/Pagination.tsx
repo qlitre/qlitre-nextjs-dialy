@@ -1,6 +1,6 @@
 import NextLink from "next/link";
-import { BLOG_PER_PAGE } from 'settings/siteSettings';
 import { AiOutlineLeft, AiOutlineRight } from "react-icons/ai";
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 import styles from "styles/components/shared/Pagination.module.scss";
 

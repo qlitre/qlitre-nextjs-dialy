@@ -1,7 +1,7 @@
-import type { Post } from 'types/blog';
 import NextLink from "next/link";
-import { PageTitle } from 'components/shared/PageTitle';
+import type { Post } from 'types/blog';
 import { jstDatetime } from 'libs/jstDatetime';
+import { PageTitle } from 'components/shared/PageTitle';
 import { TagInline } from 'components/shared/TagInline';
 import styles from 'styles/components/shared/Article.module.scss';
 

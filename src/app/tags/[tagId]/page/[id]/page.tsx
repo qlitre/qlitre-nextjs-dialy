@@ -1,11 +1,11 @@
+import { Metadata } from "next";
 import { getPostList } from 'libs/getPostList';
-import { HomePage } from 'components/pages/HomePage'
-import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { getTagDetail } from 'libs/getTagDetail';
 import { getCategoryList } from 'libs/getCategoryList';
 import { getReferencedTagCount } from 'libs/getReferencedTagCount';
-import { getTagDetail } from 'libs/getTagDetail';
 import { getMetadataWebsite } from 'libs/getMetadataWebsite';
-import { Metadata } from "next";
+import { HomePage } from 'components/pages/HomePage'
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 type Params = {
     tagId: string;

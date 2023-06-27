@@ -1,11 +1,4 @@
 .categoryNavigation {
-    /*
-    as="nav"
-            gap="4"
-            alignItems="center"
-            borderBottom="2px solid"
-            borderColor={useColorModeValue("gray.300", "gray.600")}
-    */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -20,6 +13,7 @@
     font-size: var(--font-size-md);
     padding: var(--spacing-2) var(--spacing-4);
     color: var(--c-black-alpha-500);
+
     &:hover {
         background-color: var(--c-black-alpha-100);
     }
@@ -33,6 +27,7 @@
     color: var(--c-teal-400);
     border-bottom: var(--border-2);
     border-color: var(--c-teal-400);
+
     &:hover {
         background-color: var(--c-black-alpha-100);
     }

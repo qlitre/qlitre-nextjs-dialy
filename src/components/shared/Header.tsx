@@ -1,9 +1,10 @@
 'use client'
 import NextLink from "next/link";
-import { config } from 'settings/siteSettings'
-import { IconButton } from "components/shared/IconButton";
-import { MdMenu } from "react-icons/md";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
+import { MdMenu } from "react-icons/md";
+import { IconButton } from "components/shared/IconButton";
+import { config } from 'settings/siteSettings'
+
 import styles from "styles/components/shared/Header.module.scss";
 
 

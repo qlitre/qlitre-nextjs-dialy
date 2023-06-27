@@ -34,23 +34,11 @@
     &:hover {
         background-color: var(--c-black-alpha-100);
     }
-
-    @include isDarkMode {
-        &:hover {
-            background-color: var(--c-white-alpha-200);
-        }
-    }
 }
 
 .color-primary.variant-ghost {
     &:hover {
         background-color: var(--c-primary-50);
-    }
-
-    @include isDarkMode {
-        &:hover {
-            background-color: var(--c-primary-900);
-        }
     }
 }
 
@@ -59,13 +47,5 @@
 
     &:hover {
         background-color: var(--c-gray-100);
-    }
-
-    @include isDarkMode {
-        border-color: var(--c-white-alpha-300);
-
-        &:hover {
-            background-color: var(--c-white-alpha-200);
-        }
     }
 }

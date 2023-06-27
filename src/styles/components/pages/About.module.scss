@@ -65,3 +65,8 @@
 .spacer {
     margin-top: 2em;
 }
+
+.linkToHome {
+    @include center;
+    margin-top: var(--spacing-16);
+}

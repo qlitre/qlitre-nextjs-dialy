@@ -1,9 +1,9 @@
+import NextLink from "next/link";
+import { AiOutlineRight } from "react-icons/ai";
 import type { Tag } from 'types/blog';
 import type { PostCategory } from 'types/blog';
-import NextLink from "next/link";
 import { CategoryLabel } from 'components/shared/CategoryLabel';
 import { TagLabel } from 'components/shared/TagLabel';
-import { AiOutlineRight } from "react-icons/ai";
 
 import styles from "styles/components/shared/Breadcrumbs.module.scss";
 

@@ -1,7 +1,7 @@
-import { client } from '../libs/client'
-import { Post } from '../types/blog'
+import { client } from 'libs/client'
+import type { Post } from 'types/blog'
 
-export const getAllContents = async () => {
+export const getAllPostsContents = async () => {
     const data = await client.getList<Post>({ endpoint: "post", queries: { fields: 'id' } });
     const totalCount = data.totalCount;
     const allData = await client.getList<Post>({ endpoint: "post", queries: { limit: totalCount } });

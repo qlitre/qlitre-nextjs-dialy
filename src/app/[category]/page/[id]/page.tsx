@@ -1,10 +1,11 @@
-import { getPostList } from 'libs/getPostList';
-import { getMetadataWebsite } from 'libs/getMetadataWebsite';
-import { HomePage } from 'components/pages/HomePage'
-import { BLOG_PER_PAGE } from 'settings/siteSettings';
-import { getCategoryList } from 'libs/getCategoryList';
-import { getReferencedCategoryCount } from 'libs/getReferencedCategoryCount';
 import { Metadata } from "next";
+import { getPostList } from 'libs/getPostList';
+import { getCategoryList } from 'libs/getCategoryList';
+import { getCategoryDetail } from 'libs/getCategoryDetail';
+import { getReferencedCategoryCount } from 'libs/getReferencedCategoryCount';
+import { getMetadataWebsite } from 'libs/getMetadataWebsite';
+import { HomePage } from "components/pages/HomePage"
+import { BLOG_PER_PAGE } from 'settings/siteSettings';
 
 type Params = {
     category: string;
@@ -31,7 +32,7 @@ export default async function StaticBlogCategoryPageID(
     const offset = (pageId - 1) * BLOG_PER_PAGE
     const posts = await getPostList({ offset: offset, limit: BLOG_PER_PAGE, filters: `category[equals]${categoryId}` })
     const categories = await getCategoryList()
-    const categoryDetail = categories.find((c) => c.id === categoryId);
+    const categoryDetail = await getCategoryDetail(categoryId)
 
     return (
         <>
@@ -48,8 +49,7 @@ export const generateMetadata = async ({
     const pageId = Number(params.id);
     const categoryId = params.category;
     const offset = (pageId - 1) * BLOG_PER_PAGE
-    const posts = await getPostList({ offset: offset, limit: BLOG_PER_PAGE, filters: `category[equals]${categoryId}` })
-    const categories = await getCategoryList()
+    const posts = await getPostList({ offset: offset, limit: BLOG_PER_PAGE, filters: `category[equals]${categoryId}` })    
     if (posts.contents.length === 0) {
         return getMetadataWebsite({
             pagePath: `/${categoryId}/page/${pageId}`,
@@ -58,7 +58,7 @@ export const generateMetadata = async ({
             noindex: true,
         });
     }
-    const categoryDetail = categories.find((c) => c.id === categoryId);
+    const categoryDetail = await getCategoryDetail(categoryId);
     return getMetadataWebsite({
         pagePath: `/${categoryId}/page/${pageId}`,
         title: `category: ${categoryDetail?.name}`,

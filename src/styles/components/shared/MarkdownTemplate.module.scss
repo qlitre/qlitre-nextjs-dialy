@@ -69,11 +69,6 @@
     font-family: var(--font-family-mono);
     font-size: var(--font-size-sm);
     display: inline-block;
-
-    @include isDarkMode {
-        background-color: var(--c-gray-700);
-        color: var(--c-gray-200);
-    }
 }
 
 .list {
@@ -147,10 +142,6 @@
 
     &:first-child {
         margin-top: 0;
-    }
-
-    @include isDarkMode {
-        border-color: var(--c-gray-600);
     }
 }
 

@@ -1,6 +1,6 @@
-import { client } from './client'
-import { Tag } from 'types/blog';
-import { MicroCMSQueries } from 'microcms-js-sdk';
+import { client } from 'libs/client'
+import type { Tag } from 'types/blog';
+import type { MicroCMSQueries } from 'microcms-js-sdk';
 
 export const getTagDetail = async (
     contentId: string,
