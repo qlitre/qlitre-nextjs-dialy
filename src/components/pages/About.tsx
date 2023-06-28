@@ -15,6 +15,8 @@ export const About = () => {
                     className={styles.avatar}
                     alt="Qlitre"
                     src="/myprof.jpeg"
+                    width={160}
+                    height={160}
                 />
             </div>
             <div className={styles.container}>
@@ -30,7 +32,7 @@ export const About = () => {
                 </div>
                 <h1 className={styles.heading}>このサイトについて</h1>
                 <p className={styles.description}>
-                    Next.js + microCMS + Chakra UIで自作した日記サイトです。<br />
+                    Next.js + microCMSで自作した日記サイトです。<br />
                     日常のことを書いています。<br />
                     別でプログラミングブログもやっています。<br />
                 </p>

@@ -2,7 +2,6 @@
 import NextLink from "next/link";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { MdMenu } from "react-icons/md";
-import { IconButton } from "components/shared/IconButton";
 import { config } from 'settings/siteSettings'
 
 import styles from "styles/components/shared/Header.module.scss";
@@ -46,11 +45,11 @@ const CollapsedNavLinks = () => {
         <DropdownMenu.Root>
             <div className={styles.collapsedNavigationTrigger}>
                 <DropdownMenu.Trigger asChild>
-                    <IconButton
-                        aria-label="ナビゲーションリンクを開閉する"
-                        variant="outlined"
-                        icon={<MdMenu />}
-                    />
+                    <button
+                        type="button"
+                        className={styles.iconButton}>
+                        <MdMenu />
+                    </button>
                 </DropdownMenu.Trigger>
             </div>
             <DropdownMenu.Portal>

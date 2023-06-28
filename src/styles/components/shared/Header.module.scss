@@ -86,3 +86,20 @@
     background-color: var(--c-gray-100);
   }
 }
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+  width: var(--size-10);
+  height: var(--size-10);
+  font-size: var(--font-size-2xl);
+  border: var(--border-1);
+  border-radius: var(--radius-md);
+  border-color: var(--c-gray-200);
+
+  &:hover {
+    background-color: var(--c-gray-100);
+  }
+}
