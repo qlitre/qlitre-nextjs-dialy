@@ -3,7 +3,7 @@ import Script from "next/script";
 import { FC, ReactNode, Suspense } from "react";
 import { Header } from 'components/shared/Header';
 import { Footer } from 'components/shared/Footer';
-import { GoogleAnalyticsScript } from "libs/gtag";
+import { GoogleAnalytics } from "components/shared/GoogleAnalytics";
 import { GA_TRACKING_ID } from "settings/siteSettings";
 
 import 'styles/reset.scss'
@@ -55,7 +55,7 @@ export default function RootLayout({
           }}
         />
         <Suspense fallback={null}>
-          <GoogleAnalyticsScript />
+          <GoogleAnalytics />
         </Suspense>
       </head>
       <body className={inter.className}>
