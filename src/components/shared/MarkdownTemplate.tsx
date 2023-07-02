@@ -10,7 +10,7 @@ type MarkdownTemplateProps = {
 }
 
 
-const languageSubset = ['js', 'html', 'css', 'xml', 'typescript', 'python'];
+const languageSubset = ['js', 'html', 'css', 'xml', 'typescript', 'python', 'plaintext'];
 
 const options: HTMLReactParserOptions = {
     replace: (domNode: any) => {
@@ -86,13 +86,6 @@ const options: HTMLReactParserOptions = {
                 if (/https?:\/\/(www\.)?twitter.com\/\w{1,15}\/status\/.*/.test(href)) return;
                 const linkText = domNode.children[0].data;
                 return (
-                    /** 
-                    <a href={domNode.attribs.href} className={styles.textLink}
-                        target="_blank"
-                        rel="noreferrer">
-                        {domToReact(domNode.children, options)}
-                    </a>
-                    */
                     <RichLinkCard href={domNode.attribs.href} isExternal linkText={linkText} />
                 );
             }
@@ -122,7 +115,7 @@ const options: HTMLReactParserOptions = {
                         languageSubset
                     ).value;
                     return (
-                        <code className={`hljs ${styles.codeBlock}`}>
+                        <code className={`hljs ${styles.codeBlock} ${domNode.attribs.class}`}>
                             {parse(highlightCode)}
                         </code>
                     );

@@ -1,4 +1,3 @@
-/** todo: RichlinkCardの実装で使う */
 import { JSDOM, VirtualConsole } from "jsdom";
 
 export type SiteMetadata = {

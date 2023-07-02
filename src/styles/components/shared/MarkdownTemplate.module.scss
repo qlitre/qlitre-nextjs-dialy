@@ -56,7 +56,8 @@
 .codeBlock {
     margin-top: var(--spacing-4);
     margin-bottom: var(--spacing-4);
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-md);
+    
 }
 
 .inlineCode {
@@ -124,8 +125,7 @@
 .img {
     display: block;
     max-width: 100%;
-    margin-top: 20px;
-    margin-bottom: 0px;
+    margin: var(--spacing-8) auto;
     height: auto;
     border: solid 1px var(--c-gray-300);
 }
@@ -191,4 +191,9 @@
     line-height: 1.25;
     border-bottom: var(--border-1);
     border-color: var(--c-gray-100);
+}
+
+.twitterEmbed {
+    margin-top: var(--spacing-6);
+    margin-bottom: var(--spacing-6);
 }

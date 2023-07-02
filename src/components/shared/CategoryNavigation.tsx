@@ -4,7 +4,6 @@ import type { PostCategory } from "types/blog";
 import styles from "styles/components/shared/CategoryNavigation.module.scss";
 
 
-
 type Props = {
     categories: PostCategory[];
     activeCategoryId?: string
