@@ -6,7 +6,7 @@
   display: flex;
   gap: var(--spacing-2);
   height: var(--size-36);
-  width: 100%;
+  max-width: 100%;
   border-radius: var(--radius-lg);
   border: var(--border-1);
   border-color: var(--c-gray-200);
