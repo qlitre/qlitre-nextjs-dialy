@@ -1,6 +1,7 @@
 import parse, { domToReact, HTMLReactParserOptions } from 'html-react-parser';
 import highlight from 'highlight.js';
-//import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { TwitterLinkCard } from 'components/shared/TwitterLinkCard';
+import { RichLinkCard } from 'components/shared/RichLinkCard';
 import 'highlight.js/styles/hybrid.css';
 import styles from "styles/components/shared/MarkdownTemplate.module.scss";
 
@@ -62,6 +63,17 @@ const options: HTMLReactParserOptions = {
                 );
             };
             if (domNode.name === 'blockquote') {
+                if (domNode.attribs.class == 'twitter-tweet') {
+                    // microCMSの変換htmlからtwitterURLのIDを取り出す。
+                    const twitterHref = domNode.children[2].attribs.href
+                    const arr = twitterHref.split('/')
+                    const tweetId = arr[arr.length - 1].split('?')[0]
+                    return (
+                        <div className={styles.twitterEmbed}>
+                            <TwitterLinkCard twitterId={tweetId} />
+                        </div>
+                    )
+                }
                 return (
                     <blockquote className={styles.blockquote}>
                         {domToReact(domNode.children, options)}
@@ -69,14 +81,21 @@ const options: HTMLReactParserOptions = {
                 );
             };
             if (domNode.name === "a") {
+                const href = domNode.attribs.href;
+                // twitterのリンクは埋め込みを行うので、リンクを表示しない。
+                if (/https?:\/\/(www\.)?twitter.com\/\w{1,15}\/status\/.*/.test(href)) return;
+                const linkText = domNode.children[0].data;
                 return (
+                    /** 
                     <a href={domNode.attribs.href} className={styles.textLink}
                         target="_blank"
                         rel="noreferrer">
                         {domToReact(domNode.children, options)}
                     </a>
+                    */
+                    <RichLinkCard href={domNode.attribs.href} isExternal linkText={linkText} />
                 );
-            };
+            }
             if (domNode.name === 'img') {
                 return (
                     <img
@@ -86,11 +105,11 @@ const options: HTMLReactParserOptions = {
                     />
                 );
             };
-            
+
             if (domNode.name === 'iframe') {
                 return (
                     <div className={styles.iframeContainer}>
-                        <iframe  className={styles.iframe} src={domNode.attribs.src}>
+                        <iframe className={styles.iframe} src={domNode.attribs.src}>
                             {domToReact(domNode.children, options)}
                         </iframe>
                     </div>
