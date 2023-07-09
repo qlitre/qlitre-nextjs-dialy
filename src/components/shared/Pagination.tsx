@@ -19,8 +19,14 @@ export const Pagination = ({ totalCount, categoryId, tagId, currentPage = 1 }: P
         return `/page/${p}`;
     }
     const getPaginationItem = (p: number) => {
-        if (p === currentPage) return <span className={styles.paginationLinkCurrent}>{p}</span>
-        return <NextLink className={styles.paginationLink} href={getPath(p)}>{p}</NextLink>;
+        if (p === currentPage) {
+            return (
+                <span className={styles.active}>{p}</span>
+            )
+        }
+        return (
+            <NextLink className={styles.link} href={getPath(p)}>{p}</NextLink>
+        )
     }
     const pager: number[] = []
     const numPages = Math.ceil(totalCount / BLOG_PER_PAGE)
@@ -30,35 +36,42 @@ export const Pagination = ({ totalCount, categoryId, tagId, currentPage = 1 }: P
         pager.push(i)
     }
     return (
-        <div className={styles.paginationLinkContainer}>
-            {currentPage >= 2 && (
-                <NextLink href={getPath(currentPage - 1)}>
-                    <AiOutlineLeft className={styles.icon}></AiOutlineLeft>
-                </NextLink>
-            )}
-            {currentPage >= 4 && (
-                <>
-                    {getPaginationItem(1)}
-                </>
-            )}
-            {currentPage >= 5 && <span className={styles.paginationLinkNone}>...</span>}
+        <div className={styles.wrapper}>
+            <ul className={styles.pager}>
+                {currentPage >= 2 && (
+                    <li className={styles.page}>
+                        <NextLink className={styles.link} href={getPath(currentPage - 1)}>
+                            <AiOutlineLeft className={styles.arrow}></AiOutlineLeft>
+                        </NextLink>
+                    </li>
+                )}
+                {currentPage >= 4 && (
+                    <li className={styles.page}>
+                        {getPaginationItem(1)}
+                    </li>
+                )}
+                {currentPage >= 5 && <span className={styles.omission}>...</span>}
 
-            {pager.map((number) => (
-                <>
-                    {getPaginationItem(number)}
-                </>
-            ))}
-            {currentPage <= numPages - 4 && <span className={styles.paginationLinkNone}>...</span>}
-            {currentPage <= numPages - 3 && (
-                <>
-                    {getPaginationItem(numPages)}
-                </>
-            )}
-            {currentPage < numPages && (
-                <NextLink href={getPath(currentPage + 1)}>
-                    <AiOutlineRight className={styles.icon}></AiOutlineRight>
-                </NextLink>
-            )}
+                {pager.map((number) => (
+                    <li className={styles.page} key={number}>
+                        {getPaginationItem(number)}
+                    </li>
+                ))}
+                {currentPage <= numPages - 4 && <span className={styles.omission}>...</span>}
+                {currentPage <= numPages - 3 && (
+                    <li className={styles.page}>
+                        {getPaginationItem(numPages)}
+                    </li>
+                )}
+                {currentPage < numPages && (
+                    <li className={styles.page}>
+                        <NextLink className={styles.link} href={getPath(currentPage + 1)}>
+                            <AiOutlineRight className={styles.arrow}></AiOutlineRight>
+                        </NextLink>
+
+                    </li>
+                )}
+            </ul>
         </div>
     );
 };

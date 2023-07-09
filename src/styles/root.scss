@@ -84,6 +84,7 @@
   --shadow-dark-lg: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.2) 0px 5px 10px,
     rgba(0, 0, 0, 0.4) 0px 15px 40px;
 
+  --c-white: #fff;
   --c-white-alpha-50: rgba(255, 255, 255, 0.04);
   --c-white-alpha-100: rgba(255, 255, 255, 0.06);
   --c-white-alpha-200: rgba(255, 255, 255, 0.08);
@@ -187,7 +188,6 @@
   --c-text-link-visited: #805ad5;
 
 
-
   --c-background: #fff;
 
   --container-max-width: 960px;
@@ -196,13 +196,4 @@
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-family-mono: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New";
-
-  &[data-color-mode="dark"] {
-    --c-text-primary: #e8eaea;
-    --c-text-secondary: var(--c-white-alpha-700);
-    --c-text-link: #4299e1;
-    --c-text-link-visited: #b794f4;
-
-    --c-background: #1c1c1c;
-  }
 }

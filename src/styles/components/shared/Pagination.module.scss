@@ -1,38 +1,52 @@
-@use "styles/system.scss" as *;
-
-
-.paginationLinkContainer {
-    @include hStack;
-    @include wrapItems;
-    @include center;
-    align-items: baseline;
-    gap: var(--spacing-8);
+.wrapper {
+    padding: 16px 0;
 }
 
-.icon {
-    width: var(--size-4);
-    height: var(--size-4);
-    fill: var(--c-gray-400);
-    font-size: var(--font-size-2xl);
-    stroke-width: 5;
-}
-
-.paginationLink {
-    display: block;
-    font-size: var(--font-size-2xl);
-    color: var(--c-gray-400);
-}
-
-.paginationLinkCurrent {
-    display: block;
-    font-size: var(--font-size-2xl);
-    color: var(--c-white-alpha-900);
-    border-radius: var(--radius-md);
-    background: var(--c-teal-400);
-    padding: 0 var(--spacing-2);
-}
-
-.paginationLinkNone {
+.pager {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-10) 0;
     font-size: var(--font-size-xl);
+    font-weight: 500;
+}
+
+.omission {
     color: var(--c-gray-400);
+    margin: var(--spacing-1) var(--spacing-3);
+}
+
+.page {
+    list-style: none;
+    width: var(--size-10);
+    height: var(--size-10);
+    margin: var(--spacing-1);
+
+    .active {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: var(--c-gray-600);
+        border: 1px solid var(--c-teal-400);
+        color: var(--c-teal-400);
+    }
+
+    .link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        color: var(--c-gray-600);
+
+        &:hover {
+            color: var(--c-gray-400);
+        }
+    }
+
+    .arrow {
+        margin: var(--spacing-1) var(--spacing-3);
+    }
+
 }
