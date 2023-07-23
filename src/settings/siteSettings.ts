@@ -14,6 +14,7 @@ export const config = {
     social: {
         twitter: "kuri_tter",
     },
+    postListFields: 'id,title,category,tag,description,publishedAt',
     excerptLength: 160,
 };
 

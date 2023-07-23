@@ -22,7 +22,7 @@ export const AmazonLink = ({ content }: Props) => {
                 </a>
             </div>
             <div className={styles.right}>
-                <img className={styles.img} src={content.productImage.url} alt={content.productName} />
+                <img className={styles.img} src={content.productImage && content.productImage.url} alt={content.productName} />
             </div>
         </div>
     )

@@ -6,6 +6,7 @@ import { getReferencedTagCount } from 'libs/getReferencedTagCount';
 import { getMetadataWebsite } from 'libs/getMetadataWebsite';
 import { HomePage } from 'components/pages/HomePage'
 import { BLOG_PER_PAGE } from 'settings/siteSettings';
+import { config } from "settings/siteSettings";
 
 type Params = {
     tagId: string;
@@ -14,12 +15,13 @@ type Params = {
 
 export async function generateStaticParams() {
     const tagCount = await getReferencedTagCount();
-    const paths: string[] = []
+    type pathObject = { tagId: string, id: string }
+    const paths: pathObject[] = []
     for (const tagId in tagCount) {
         const cnt = tagCount[tagId];
         const numPages = Math.ceil(cnt / BLOG_PER_PAGE)
         for (let i = 1; i <= numPages; i++) {
-            paths.push(`${tagId}/page/${i}`)
+            paths.push({ tagId: tagId, id: String(i) })
         }
     }
     return paths;
@@ -30,9 +32,16 @@ export default async function StaticBlogTagPageID({
     const pageId = Number(params.id);
     const tagId = params.tagId;
     const offset = (pageId - 1) * BLOG_PER_PAGE
-    const posts = await getPostList({ offset: offset, limit: BLOG_PER_PAGE, filters: `tag[contains]${tagId}` })
-    const categories = await getCategoryList()
-    const tagDetail = await getTagDetail(tagId);
+    const [posts, categories, tagDetail] = await Promise.all([
+        await getPostList({
+            offset: offset,
+            limit: BLOG_PER_PAGE,
+            filters: `tag[contains]${tagId}`,
+            fields: config.postListFields
+        }),
+        await getCategoryList(),
+        await getTagDetail(tagId)
+    ])
 
     return (
         <>

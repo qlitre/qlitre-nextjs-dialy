@@ -68,7 +68,6 @@ export const Pagination = ({ totalCount, categoryId, tagId, currentPage = 1 }: P
                         <NextLink className={styles.link} href={getPath(currentPage + 1)}>
                             <AiOutlineRight className={styles.arrow}></AiOutlineRight>
                         </NextLink>
-
                     </li>
                 )}
             </ul>
