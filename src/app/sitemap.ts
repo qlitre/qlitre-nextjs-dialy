@@ -19,7 +19,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const allPosts = await getAllPostsContents();
   for (const post of allPosts) {
     const elm = {
-      url: `${baseUrl}/post/${post.id}}`,
+      url: `${baseUrl}/post/${post.id}`,
       lastModified,
     }
     staticPaths.push(elm)
